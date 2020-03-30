@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">P1N4</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="start_exercise">Los</string>
+    <string name="restart_exercise">Nochmal</string>
+    <string name="back">Zurück</string>
+    <string name="score">Punkte</string>
+    <string name="highscore">Rekord: %1$d Punkte</string>
+
+</resources>
