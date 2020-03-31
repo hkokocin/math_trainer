@@ -14,4 +14,9 @@ class LocalScoreRepository(
         if (getHighscore(exerciseDefinitionId) < score)
             putInt(SCORE_PREFIX + exerciseDefinitionId, score)
     }
+
+    fun getLowestHighscore(exerciseDefinitionIds: List<String>) = exerciseDefinitionIds
+        .map { getHighscore(it) }
+        .min()
+        ?: 0
 }

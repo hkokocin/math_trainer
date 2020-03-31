@@ -8,14 +8,15 @@ class SubstractionGenerator(
     private val optionsGenerator: OptionsGenerator
 ) {
     fun create(definition: ProblemDefinition.Subtraction): Problem {
-        val solution = Random.nextInt(1, definition.maximumValue)
-        val a = Random.nextInt(solution + 1, definition.maximumValue)
+        val maximum = definition.maximumValue
+        val solution = Random.nextInt(1, maximum)
+        val a = if(solution == maximum - 1) maximum else Random.nextInt(solution, maximum) + 1
         val b = a - solution
 
         return Problem(
             "$a - $b",
             solution,
-            optionsGenerator.generateOptions(definition.maximumValue, solution),
+            optionsGenerator.generateOptions(maximum, solution),
             definition.score
         )
     }

@@ -15,5 +15,5 @@ data class ExerciseListItem(
     val onClick: () -> Unit
 )
 
-object ACTIVITY_RESUMED: Action
+data class ActivityResumed(val lessonId: String): Action
 data class ExerciseSelected(val exerciseDefinitionId: String): Action

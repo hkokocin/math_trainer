@@ -30,3 +30,11 @@ data class ExerciseDefinition(
 )
 
 fun ExerciseDefinition.calculateStars(score: Int) = performanceTiers.count { it <= score }
+
+data class LessonDefinition(
+    val id: String,
+    val title: String,
+    val description: String,
+    val exercises: List<ExerciseDefinition>,
+    val dependsOn: List<String>
+)

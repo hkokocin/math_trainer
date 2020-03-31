@@ -11,8 +11,8 @@ class LoadExerciseListUseCase(
     private val scoreRepository: LocalScoreRepository
 ) {
 
-    suspend fun adopt(dispatch: (Action) -> Unit): List<ExerciseListItem> = exercisesRepository
-        .getExerciseDefinitions()
+    suspend fun adopt(lessonId: String, dispatch: (Action) -> Unit): List<ExerciseListItem> = exercisesRepository
+        .getExerciseDefinitions(lessonId)
         .await()
         .map { createItem(it, dispatch) }
 

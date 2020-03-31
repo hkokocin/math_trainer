@@ -22,13 +22,13 @@ class LessonViewModelShard(
 
     override fun dispatch(action: Action) {
         when (action) {
-            is ACTIVITY_RESUMED -> loadExercises()
+            is ActivityResumed -> loadExercises(action.lessonId)
             is ExerciseSelected -> openExercise(action.exerciseDefinitionId)
         }
     }
 
-    private fun loadExercises() = jobs.launch {
-        val exercises = loadExerciseListUseCase.adopt(::dispatch)
+    private fun loadExercises(lessonId: String) = jobs.launch {
+        val exercises = loadExerciseListUseCase.adopt(lessonId, ::dispatch)
         emit(UpdateExercises(exercises))
     }
 

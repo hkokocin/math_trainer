@@ -33,7 +33,7 @@ class ExerciseViewModelShard(
 
     override fun onCleared() = jobs.clear()
 
-    private fun initializeExercise(definitionId: String) {
+    private fun initializeExercise(definitionId: String) = jobs.launch {
         exerciseDefinitionId = definitionId
         exercise = exercisesRepository.createExercise(definitionId)
         emit(Initialization(exercise.title, exercise.description, scoreRepository.getHighscore(exerciseDefinitionId)))

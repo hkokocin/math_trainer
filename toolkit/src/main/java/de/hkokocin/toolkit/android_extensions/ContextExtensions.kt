@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.os.Vibrator
 import androidx.annotation.AnyRes
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -22,6 +23,7 @@ inline fun Context.alertDialog(init: AlertDialog.Builder.() -> Unit): AlertDialo
 }
 
 val Context.notificationManager get() = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+val Context.vibrator get() = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
 inline fun <reified T : Any> Context.getAnyResource(@AnyRes resourceId: Int) = when (T::class) {
     String::class              -> resources.getString(resourceId) as T

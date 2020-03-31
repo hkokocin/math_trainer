@@ -1,6 +1,5 @@
 package de.hkokocin.exercise.lesson
 
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
@@ -12,6 +11,7 @@ import de.hkokocin.exercise.R
 import de.hkokocin.exercise.lesson.LessonViewState.ExecuteCommand
 import de.hkokocin.exercise.lesson.LessonViewState.UpdateExercises
 import de.hkokocin.redukt.BaseView
+import de.hkokocin.toolkit.android_extensions.extra
 import de.hkokocin.uikit.setToolbar
 import de.hkokocin.widgetadapter.WidgetAdapter
 
@@ -32,7 +32,11 @@ class LessonView(
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
-        viewModel.dispatch(ACTIVITY_RESUMED)
+        val lessonId = checkNotNull(activity.extra<String>(LessonActivity.EXTRA.LESSON_ID)) {
+            "Extra '${LessonActivity.EXTRA.LESSON_ID}' not set."
+        }
+
+        viewModel.dispatch(ActivityResumed(lessonId))
     }
 
     private fun initViews() {

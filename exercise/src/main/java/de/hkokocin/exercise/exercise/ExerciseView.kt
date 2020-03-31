@@ -2,6 +2,7 @@ package de.hkokocin.exercise.exercise
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.os.VibrationEffect
 import android.view.View
 import android.view.animation.*
 import android.widget.Button
@@ -23,6 +24,7 @@ import de.hkokocin.redukt.BaseView
 import de.hkokocin.toolkit.android_extensions.extra
 import de.hkokocin.toolkit.android_extensions.screenMetrics
 import de.hkokocin.toolkit.android_extensions.start
+import de.hkokocin.toolkit.android_extensions.vibrator
 import de.hkokocin.uikit.setToolbar
 
 enum class ViewLayer {
@@ -30,8 +32,13 @@ enum class ViewLayer {
 }
 
 object AnimationDuration {
-    val ERROR = 2000L
-    val SHORT = 100L
+    const val ERROR = 2000L
+    const val SHORT = 100L
+}
+
+object VibrationDuration{
+    const val SHORT = 20L
+    const val LONG = 1200L
 }
 
 class ExerciseView(
@@ -181,7 +188,9 @@ class ExerciseView(
         bOption3.showBottomButtonAnimated(200)
     }
 
+    @Suppress("DEPRECATION")
     private fun hideProblemViewsAnimated(onEnd: () -> Unit = {}) {
+        activity.vibrator.vibrate(VibrationDuration.SHORT)
         tvProblem.fadeOut()
         bOption1.hideOptionAnimated()
         bOption2.hideOptionAnimated(100)
@@ -195,7 +204,9 @@ class ExerciseView(
         onOptionViewsHidden()
     }
 
+    @Suppress("DEPRECATION")
     private fun hideProblemViewsOnErrorAnimated(onEnd: () -> Unit = {}) {
+        activity.vibrator.vibrate(VibrationDuration.LONG)
         tvProblem.fadeOut().startDelay = AnimationDuration.ERROR - AnimationDuration.SHORT
         bOption1.hideOptionOnErrorAnimated()
         bOption2.hideOptionOnErrorAnimated()

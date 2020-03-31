@@ -19,6 +19,6 @@ class ExerciseActivity : BaseActivity(), KodeinAware {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(exerciseView, R.layout.exercise_activity)
+        setContentView(exerciseView, R.layout.exercise_view)
     }
 }

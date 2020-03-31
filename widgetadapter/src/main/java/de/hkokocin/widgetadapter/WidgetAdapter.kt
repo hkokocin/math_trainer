@@ -93,7 +93,7 @@ open class WidgetAdapter(
     @Suppress("UNCHECKED_CAST")
     private fun <T> bindViewHolder(holder: RecyclerView.ViewHolder, item: T) {
         (holder as WidgetViewHolder<T>).widget.apply {
-            setData(item as T)
+            setData(item)
             onViewBound()
         }
     }
