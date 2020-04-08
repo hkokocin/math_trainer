@@ -12,13 +12,18 @@ data class ExerciseResult(
     val stars: Int
 )
 
+data class ProblemResult(
+    val problem: Problem,
+    val solutionIndex: Int
+)
+
 class Exercise(
     private val definition: ExerciseDefinition,
     private val problemGenerator: ProblemGenerator
 ) {
     private var currentProblem: Problem? = null
 
-    private val solutions = mutableMapOf<Problem, Int>()
+    private val solutions = mutableListOf<ProblemResult>()
 
     val duration = definition.duration
     val title = definition.title
@@ -31,10 +36,10 @@ class Exercise(
         delay(definition.duration * 1000L)
         finished = true
 
-        val errorCount = solutions.filter { it.key.solution != it.value }.size
+        val errorCount = solutions.filter { it.problem.solution != it.solutionIndex }.size
         val score = solutions
-            .filter { it.key.solution == it.value }
-            .map { it.key.score }
+            .filter { it.problem.solution == it.solutionIndex }
+            .map { it.problem.score }
             .sum()
             .minus(errorCount)
 
@@ -47,7 +52,7 @@ class Exercise(
         check(!finished) { "Exercise has already been finished" }
         val problem = checkNotNull(currentProblem) { "Exercise has not been started" }
 
-        solutions[problem] = problem.options[solutionIndex]
+        solutions.add(ProblemResult(problem, problem.options[solutionIndex]))
 
         return problem.solution == problem.options[solutionIndex]
     }
