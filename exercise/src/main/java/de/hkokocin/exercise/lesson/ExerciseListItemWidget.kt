@@ -27,6 +27,8 @@ class ExerciseListItemWidget : Widget<ExerciseListItem>(R.layout.lesson_exercise
         ivStar2.setStarColor(data.stars >= 2)
         ivStar3.setStarColor(data.stars >= 3)
 
+        clContainer.isEnabled =  data.unlocked
+        clContainer.alpha = if(data.unlocked) 1f else 0.3f
         clContainer.setOnClickListener { data.onClick() }
     }
 

@@ -13,6 +13,7 @@ sealed class LessonViewState: ViewState{
 data class ExerciseListItem(
     val title: String,
     val stars: Int,
+    val unlocked: Boolean,
     val onClick: () -> Unit
 )
 

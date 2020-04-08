@@ -11,16 +11,17 @@ class LoadExerciseListUseCase(
     private val scoreRepository: LocalScoreRepository
 ) {
 
-    suspend fun adopt(lessonId: String, dispatch: (Action) -> Unit): List<ExerciseListItem> = exercisesRepository
-        .getExerciseDefinitions(lessonId)
-        .await()
-        .map { createItem(it, dispatch) }
+    suspend fun adopt(lessonId: String, dispatch: (Action) -> Unit): List<ExerciseListItem> {
+        val exercises = exercisesRepository
+            .getExerciseDefinitions(lessonId)
+            .await()
 
-    private fun createItem(
-        definition: ExerciseDefinition,
-        dispatch: (Action) -> Unit
-    ) = ExerciseListItem(
-        definition.title,
-        definition.calculateStars(scoreRepository.getHighscore(definition.id))
-    ) { dispatch(ExerciseSelected(definition.id)) }
+        val stars = exercises.map { it.calculateStars(scoreRepository.getHighscore(it.id)) }
+
+        return exercises.mapIndexed {index, exercise -> ExerciseListItem(
+            exercise.title,
+            exercise.calculateStars(scoreRepository.getHighscore(exercise.id)),
+            if(index == 0) true else stars[index - 1] >= 1
+        ) { dispatch(ExerciseSelected(exercise.id)) } }
+    }
 }
