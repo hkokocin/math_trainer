@@ -27,7 +27,7 @@ fun lessonModule(activity: BaseActivity) = Kodein.Module("ExerciseModule") {
     bind<LessonView>() with provider { LessonView(i(), i(), i()) }
 
     bind<LoadExerciseListUseCase>() with provider { LoadExerciseListUseCase(i(), i()) }
-    bind<LessonViewModelShard>() with provider { LessonViewModelShard(i(), i()) }
+    bind<LessonViewModelShard>() with provider { LessonViewModelShard(i(), i(), i()) }
 
     val providers = mutableMapOf<KClass<out ViewModel>, NoArgSimpleBindingKodein<*>.() -> ViewModel>()
     providers[LessonViewModel::class] = { LessonViewModel(i()) }

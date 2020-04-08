@@ -7,10 +7,12 @@ import org.kodein.di.Kodein
 import org.kodein.di.erased.bind
 import org.kodein.di.erased.provider
 import org.kodein.di.erased.singleton
+import kotlin.random.Random
 
 fun exerciseServiceModule() = Kodein.Module("ServiceModule") {
+    bind<Random>() with provider { Random(System.currentTimeMillis()) }
     bind<OptionsGenerator>() with provider { OptionsGenerator() }
-    bind<AdditionGenerator>() with provider { AdditionGenerator(i()) }
+    bind<AdditionGenerator>() with provider { AdditionGenerator(i(), i()) }
     bind<SubstractionGenerator>() with provider { SubstractionGenerator(i()) }
     bind<MultiplicationGenerator>() with provider { MultiplicationGenerator(i()) }
     bind<ProblemGenerator>() with provider { ProblemGenerator(i(), i(), i()) }

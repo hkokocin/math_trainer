@@ -7,11 +7,12 @@ import kotlin.math.min
 import kotlin.random.Random
 
 class AdditionGenerator(
-    private val optionsGenerator: OptionsGenerator
+    private val optionsGenerator: OptionsGenerator,
+    private val random: Random
 ) {
     fun create(definition: ProblemDefinition.Addition): Problem {
-        val solution = Random.nextInt(2, definition.maximumValue + 1)
-        val a = Random.nextInt(1, solution)
+        val solution = random.nextInt(2, definition.maximumValue + 1)
+        val a = random.nextInt(1, solution)
         val b = solution - a
 
         return Problem(

@@ -1,9 +1,11 @@
 package de.hkokocin.exercise.lesson
 
 import de.hkokocin.android.startActivity
+import de.hkokocin.exercise.R
 import de.hkokocin.exercise.exercise.ExerciseActivity
-import de.hkokocin.exercise.lesson.LessonViewState.ExecuteCommand
-import de.hkokocin.exercise.lesson.LessonViewState.UpdateExercises
+import de.hkokocin.exercise.lesson.LessonViewState.*
+import de.hkokocin.exercise_service.ExercisesRepository
+import de.hkokocin.exercise_service.ProblemDefinition
 import de.hkokocin.redukt.Action
 import de.hkokocin.redukt.CompositeViewModel
 import de.hkokocin.redukt.ViewModelShard
@@ -17,17 +19,26 @@ class LessonViewModel(
 
 class LessonViewModelShard(
     private val jobs: Jobs,
-    private val loadExerciseListUseCase: LoadExerciseListUseCase
+    private val loadExerciseListUseCase: LoadExerciseListUseCase,
+    private val exercisesRepository: ExercisesRepository
 ) : ViewModelShard<LessonViewState>() {
 
     override fun dispatch(action: Action) {
         when (action) {
-            is ActivityResumed -> loadExercises(action.lessonId)
+            is ActivityResumed -> loadData(action.lessonId)
             is ExerciseSelected -> openExercise(action.exerciseDefinitionId)
         }
     }
 
-    private fun loadExercises(lessonId: String) = jobs.launch {
+    private fun loadData(lessonId: String) = jobs.launch {
+        val lesson = exercisesRepository.getLesson(lessonId)
+
+        emit(UpdateLesson(lesson.title))
+
+        loadExercises(lessonId)
+    }
+
+    private suspend fun loadExercises(lessonId: String) {
         val exercises = loadExerciseListUseCase.adopt(lessonId, ::dispatch)
         emit(UpdateExercises(exercises))
     }

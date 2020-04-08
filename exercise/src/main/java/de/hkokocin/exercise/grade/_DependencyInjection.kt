@@ -5,7 +5,9 @@ import de.hkokocin.android.BaseActivity
 import de.hkokocin.application.activityModule
 import de.hkokocin.application.globalScope
 import de.hkokocin.toolkit.i
+import de.hkokocin.toolkit.p
 import de.hkokocin.uikit.bindViewModels
+import de.hkokocin.widgetadapter.WidgetAdapter
 import org.kodein.di.Kodein
 import org.kodein.di.bindings.NoArgSimpleBindingKodein
 import org.kodein.di.erased.bind
@@ -22,9 +24,12 @@ fun gradeScope(activity: BaseActivity) = Kodein {
 }
 
 fun gradeModule(activity: BaseActivity) = Kodein.Module("ExerciseModule") {
-    bind<GraphViewWidgetAdapter>() with provider { GraphViewWidgetAdapter(i()) }
-    bind<GradeTreeView>() with provider { GradeTreeView(i(), i(), i()) }
-    bind<GradeTreeViewModelShard>() with provider { GradeTreeViewModelShard(i(), i(), i()) }
+    bind<WidgetAdapter>() with provider { WidgetAdapter(i()) }
+
+    bind<GradeView>() with provider { GradeView(i(), i(), i()) }
+
+    bind<GradeTreeViewModelShard>() with provider { GradeTreeViewModelShard(i(), i()) }
+    bind<LoadGradesUseCase>() with provider { LoadGradesUseCase(i(), i()) }
 
     val providers = mutableMapOf<KClass<out ViewModel>, NoArgSimpleBindingKodein<*>.() -> ViewModel>()
     providers[GradeTreeViewModel::class] = { GradeTreeViewModel(i()) }

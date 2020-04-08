@@ -4,9 +4,15 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import de.hkokocin.exercise_service.exerciseServiceModule
 import de.hkokocin.local_data.localDataModule
+import timber.log.Timber
 
 class MathTrainerApplication: Application() {
     val globalScope = GlobalScope(this)
+
+    override fun onCreate() {
+        super.onCreate()
+        Timber.plant(Timber.DebugTree())
+    }
 }
 
 class GlobalScope(application: MathTrainerApplication) {

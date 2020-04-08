@@ -1,5 +1,8 @@
 package de.hkokocin.exercise_service
 
+const val MAX_STARS = 3
+const val UNLOCK_GRADE_STAR_RATIO = 0.66f
+
 sealed class ProblemDefinition {
 
     abstract val score: Int
@@ -35,6 +38,13 @@ data class LessonDefinition(
     val id: String,
     val title: String,
     val description: String,
-    val exercises: List<ExerciseDefinition>,
-    val dependsOn: List<String>
+    val exercises: List<ExerciseDefinition>
+)
+
+data class GradeDefinition(
+    val index: Int,
+    val addLessonId: String? = null,
+    val subtractLessonId: String? = null,
+    val multiplyLessonId: String? = null,
+    val divideLessonId: String? = null
 )

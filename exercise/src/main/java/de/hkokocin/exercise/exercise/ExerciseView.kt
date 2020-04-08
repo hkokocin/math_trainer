@@ -257,7 +257,6 @@ class ExerciseView(
             duration = progressDuration
             interpolator = LinearInterpolator()
             addUpdateListener { translationY = it.animatedValue as Float }
-
             start()
         }
     }
@@ -281,6 +280,7 @@ class ExerciseView(
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun View.hideOptionOnErrorAnimated(onEnd: () -> Unit = {}) {
         isEnabled = false
         setBackgroundColor(resources.getColor(R.color.error))
@@ -295,7 +295,7 @@ class ExerciseView(
                 scaleX = 1f
                 scaleY = 1f
                 translationY = translationOffset
-                setBackgroundColor(resources.getColor(R.color.accent))
+                setBackgroundColor(resources.getColor(R.color.amber))
                 isEnabled = true
                 onEnd()
             })

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/lesson_exercise_background"
+    android:paddingHorizontal="@dimen/space_normal"
+    android:paddingVertical="@dimen/space_small"
+    android:layout_marginRight="@dimen/space_small"
+    tools:theme="@style/AppTheme.Cyan">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        app:layout_constraintLeft_toLeftOf="@id/tv_title"
+        app:layout_constraintRight_toRightOf="@id/tv_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:layout_marginTop="@dimen/space_tiny"
+        android:foregroundGravity="left">
+
+        <View
+            android:id="@+id/v_progress_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/lesson_exercise_background"
+            android:backgroundTint="?colorPrimaryDark" />
+
+        <View
+            android:id="@+id/v_progress_foreground"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/lesson_exercise_background"
+            android:backgroundTint="?colorAccent"
+            android:layout_gravity="left" />
+    </FrameLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_title"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="2"
+        android:textAlignment="center"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Addition 1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

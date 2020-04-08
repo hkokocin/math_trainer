@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import de.hkokocin.android.BaseActivity
 import de.hkokocin.exercise.R
-import de.hkokocin.exercise.lesson.LessonViewState.ExecuteCommand
-import de.hkokocin.exercise.lesson.LessonViewState.UpdateExercises
+import de.hkokocin.exercise.lesson.LessonViewState.*
 import de.hkokocin.redukt.BaseView
 import de.hkokocin.toolkit.android_extensions.extra
+import de.hkokocin.toolkit.views.MarginItemDecoration
 import de.hkokocin.uikit.setToolbar
 import de.hkokocin.widgetadapter.WidgetAdapter
 
@@ -23,6 +23,8 @@ class LessonView(
 
     private val toolbar: MaterialToolbar by viewId(R.id.toolbar)
     private val rvExercises: RecyclerView by viewId(R.id.rv_exercises)
+
+    private val margin by dimensionPixelSize(R.dimen.space_normal)
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate(lifecycleOwner: LifecycleOwner) {
@@ -44,12 +46,14 @@ class LessonView(
         adapter.addWidget { ExerciseListItemWidget() }
         rvExercises.adapter = adapter
         rvExercises.layoutManager = LinearLayoutManager(rvExercises.context)
+        rvExercises.addItemDecoration(MarginItemDecoration(margin))
     }
 
     private fun bindViewModel(lifecycle: Lifecycle) = viewModel.observe(lifecycle) {
         when (it) {
             is UpdateExercises -> updateExercises(it.exercises)
             is ExecuteCommand -> it.command(activity)
+            is UpdateLesson -> toolbar.title = it.title
         }
     }
 

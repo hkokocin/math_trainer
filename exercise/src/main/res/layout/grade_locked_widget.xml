@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/space_normal"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:background="@color/teal_light">
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:alpha="0.6"
+        android:src="@drawable/ic_lock_black"
+        android:tint="@color/overlay_dark" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        tools:text="12/23" />
+
+</FrameLayout>

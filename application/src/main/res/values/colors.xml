@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#009688</color>
-    <color name="primary_dark">#00796B</color>
-    <color name="primary_light">#B2DFDB</color>
-    <color name="accent">#FFC107</color>
 
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
@@ -11,5 +7,36 @@
     <color name="divider">#BDBDBD</color>
 
     <color name="error">#E3794C</color>
-    <color name="progress_overlay">#33000000</color>
+    <color name="overlay">#33000000</color>
+    <color name="overlay_dark">#AA000000</color>
+
+    <color name="teal">#009688</color>
+    <color name="teal_dark">#00796B</color>
+    <color name="teal_light">#B2DFDB</color>
+
+    <!-- + -->
+    <color name="green">#43A047</color>
+    <color name="green_dark">#2E7D32</color>
+    <color name="green_light">#C8E6C9</color>
+
+    <!-- - -->
+    <color name="amber">#FFC107</color>
+    <color name="amber_dark">#FFA000</color>
+    <color name="amber_light">#FFECB3</color>
+
+    <!-- * -->
+    <color name="cyan">#0097A7</color>
+    <color name="cyan_dark">#006064</color>
+    <color name="cyan_light">#B2EBF2</color>
+
+    <!-- / -->
+    <color name="orange">#EF6C00</color>
+    <color name="orange_dark">#E65100</color>
+    <color name="orange_light">#FFCC80</color>
+
+    <!-- / -->
+    <color name="purple">#AB47BC</color>
+    <color name="purple_dark">#8E24AA</color>
+    <color name="purple_light">#E1BEE7</color>
+
 </resources>

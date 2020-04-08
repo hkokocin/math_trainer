@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true">
+
+    <!-- ================================== -->
+    <!-- HEADER -->
+    <!-- ================================== -->
+
+    <View
+        android:id="@+id/v_header_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/ll_level"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <LinearLayout
+        android:id="@+id/ll_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_normal"
+        android:layout_marginBottom="@dimen/space_normal"
+        android:layout_weight="0.5"
+        android:background="@drawable/lesson_exercise_background"
+        android:backgroundTint="@color/teal_dark"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/space_large"
+        android:paddingTop="@dimen/space_normal"
+        app:layout_constraintBottom_toBottomOf="@id/v_header_bg"
+        app:layout_constraintRight_toLeftOf="@id/gl_header"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/grade"
+            android:textSize="24sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="72sp"
+            tools:text="2" />
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_stars_collected"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/space_normal"
+        android:background="@drawable/lesson_exercise_background"
+        android:drawableStart="@drawable/ic_star_amber_24dp"
+        android:drawablePadding="@dimen/space_small"
+        android:padding="@dimen/space_small"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/gl_header"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ll_level"
+        tools:text="12 Gesammelt" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_stars_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/space_normal"
+        android:background="@drawable/lesson_exercise_background"
+        android:drawableStart="@drawable/ic_star_border_amber_24dp"
+        android:drawablePadding="@dimen/space_small"
+        android:padding="@dimen/space_small"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/gl_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_stars_collected"
+        tools:text="12 Offen" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_stars_to_next_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/space_normal"
+        android:background="@drawable/lesson_exercise_background"
+        android:drawableStart="@drawable/ic_star_border_teal_24dp"
+        android:drawablePadding="@dimen/space_small"
+        android:padding="@dimen/space_small"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/gl_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_stars_left"
+        tools:text="4 Bis Level 3" />
+
+    <ImageView
+        android:id="@+id/iv_lock"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:src="@drawable/ic_lock_black"
+        android:alpha="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/v_header_bg"
+        app:layout_constraintBottom_toBottomOf="@id/v_header_bg"/>
+
+    <!-- ================================== -->
+    <!-- ADD -->
+    <!-- ================================== -->
+
+    <View
+        android:id="@+id/v_track_to_add"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_tiny"
+        android:background="@color/green_light"
+        app:layout_constraintBottom_toBottomOf="@id/fl_add"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/gl_center"
+        app:layout_constraintTop_toTopOf="@id/fl_add" />
+
+    <View
+        android:id="@+id/v_track_from_add"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_tiny"
+        android:background="@color/green_light"
+        app:layout_constraintBottom_toBottomOf="@id/fl_add"
+        app:layout_constraintLeft_toRightOf="@id/gl_center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fl_add" />
+
+    <FrameLayout
+        android:id="@+id/fl_add"
+        android:layout_width="196dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_xlarge"
+        android:layout_marginBottom="@dimen/space_normal"
+        android:background="@drawable/lesson_exercise_background"
+        android:backgroundTint="@color/green"
+        android:elevation="@dimen/space_tiny"
+        app:layout_constraintBottom_toTopOf="@id/fl_subtract"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/v_header_bg"
+        app:layout_constraintVertical_chainStyle="spread">
+
+        <ImageView
+            android:id="@+id/v_add_progress_track"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_normal"
+            android:layout_gravity="bottom"
+            android:src="@color/green_dark" />
+
+        <ImageView
+            android:id="@+id/v_add_progress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_normal"
+            android:layout_gravity="bottom|start"
+            android:src="@color/amber_dark"
+            tools:layout_width="72dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_add_progress_label"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_gravity="bottom|center"
+            android:elevation="@dimen/space_tiny"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="12sp"
+            tools:text="6 von 15 Sternen" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_add_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/space_normal"
+            android:elevation="@dimen/space_tiny"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="24sp"
+            tools:text="Addition 3" />
+    </FrameLayout>
+
+    <!-- ================================== -->
+    <!-- SUBSTRACT                          -->
+    <!-- ================================== -->
+
+    <View
+        android:id="@+id/v_track_to_subtract"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_tiny"
+        android:background="@color/purple_light"
+        app:layout_constraintBottom_toBottomOf="@id/fl_subtract"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/gl_center"
+        app:layout_constraintTop_toTopOf="@id/fl_subtract" />
+
+    <View
+        android:id="@+id/v_track_from_subtract"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_tiny"
+        android:background="@color/purple_light"
+        app:layout_constraintBottom_toBottomOf="@id/fl_subtract"
+        app:layout_constraintLeft_toRightOf="@id/gl_center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fl_subtract" />
+
+    <FrameLayout
+        android:id="@+id/fl_subtract"
+        android:layout_width="196dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
+        android:background="@drawable/lesson_exercise_background"
+        android:backgroundTint="@color/purple"
+        android:elevation="@dimen/space_tiny"
+        app:layout_constraintBottom_toTopOf="@id/fl_multiply"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_add"
+        app:layout_constraintVertical_chainStyle="spread">
+
+        <View
+            android:id="@+id/v_subract_progress_track"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_normal"
+            android:layout_gravity="bottom"
+            android:background="@color/purple_dark" />
+
+        <View
+            android:id="@+id/v_subtract_progress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_normal"
+            android:layout_gravity="bottom|start"
+            android:background="@color/amber_dark"
+            tools:layout_width="144dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_subtract_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/space_normal"
+            android:elevation="@dimen/space_tiny"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="24sp"
+            tools:text="Substraction 2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_subtract_progress_label"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_gravity="bottom|center"
+            android:elevation="@dimen/space_tiny"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="12sp"
+            tools:text="6 von 15 Sternen" />
+    </FrameLayout>
+
+    <!-- ================================== -->
+    <!-- MULTIPLY                           -->
+    <!-- ================================== -->
+
+    <View
+        android:id="@+id/v_track_to_multiply"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_tiny"
+        android:background="@color/cyan_light"
+        app:layout_constraintBottom_toBottomOf="@id/fl_multiply"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/gl_center"
+        app:layout_constraintTop_toTopOf="@id/fl_multiply" />
+
+    <View
+        android:id="@+id/v_track_from_multiply"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_tiny"
+        android:background="@color/cyan_light"
+        app:layout_constraintBottom_toBottomOf="@id/fl_multiply"
+        app:layout_constraintLeft_toRightOf="@id/gl_center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fl_multiply" />
+
+
+    <FrameLayout
+        android:id="@+id/fl_multiply"
+        android:layout_width="196dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
+        android:background="@drawable/lesson_exercise_background"
+        android:backgroundTint="@color/cyan"
+        android:elevation="@dimen/space_tiny"
+        app:layout_constraintBottom_toTopOf="@id/fl_divide"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_subtract"
+        app:layout_constraintVertical_chainStyle="spread">
+
+
+        <View
+            android:id="@+id/v_multiply_progress_track"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_normal"
+            android:layout_gravity="bottom"
+            android:background="@color/cyan_dark" />
+
+        <View
+            android:id="@+id/v_multiply_progress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_normal"
+            android:layout_gravity="bottom|start"
+            android:background="@color/amber_dark"
+            tools:layout_width="96dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_multiply_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/space_normal"
+            android:elevation="@dimen/space_tiny"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="24sp"
+            tools:text="Multiplication 1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_multiply_progress_label"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_gravity="bottom|center"
+            android:elevation="@dimen/space_tiny"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="12sp"
+            tools:text="6 von 15 Sternen" />
+    </FrameLayout>
+
+    <!-- ================================== -->
+    <!-- DIVIDE                             -->
+    <!-- ================================== -->
+
+    <View
+        android:id="@+id/v_track_to_divide"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_tiny"
+        android:background="@color/orange_light"
+        app:layout_constraintBottom_toBottomOf="@id/fl_divide"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/gl_center"
+        app:layout_constraintTop_toTopOf="@id/fl_divide" />
+
+    <View
+        android:id="@+id/v_track_from_divide"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_tiny"
+        android:background="@color/orange_light"
+        app:layout_constraintBottom_toBottomOf="@id/fl_divide"
+        app:layout_constraintLeft_toRightOf="@id/gl_center"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/fl_divide" />
+
+    <FrameLayout
+        android:id="@+id/fl_divide"
+        android:layout_width="196dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
+        android:background="@drawable/lesson_exercise_background"
+        android:backgroundTint="@color/orange"
+        android:elevation="@dimen/space_tiny"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fl_multiply"
+        app:layout_constraintVertical_chainStyle="spread">
+
+        <View
+            android:id="@+id/v_divide_progress_track"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_normal"
+            android:layout_gravity="bottom"
+            android:background="@color/orange_dark" />
+
+        <View
+            android:id="@+id/v_divide_progress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_normal"
+            android:layout_gravity="bottom|start"
+            android:background="@color/amber_dark"
+            tools:layout_width="144dp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_divide_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="@dimen/space_normal"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="24sp"
+            tools:text="Division 1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_divide_progress_label"
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:layout_gravity="bottom|center"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="12sp"
+            tools:text="6 von 15 Sternen" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

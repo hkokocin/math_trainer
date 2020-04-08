@@ -10,7 +10,7 @@ class GradeActivity : BaseActivity(), KodeinAware {
 
     override val kodein by lazy { gradeScope(this) }
 
-    private val view by instance<GradeTreeView>()
+    private val view by instance<GradeView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

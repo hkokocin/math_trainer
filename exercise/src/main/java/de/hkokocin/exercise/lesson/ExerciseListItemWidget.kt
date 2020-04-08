@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.ImageViewCompat
 import de.hkokocin.exercise.R
+import de.hkokocin.toolkit.android_extensions.attributeColor
 import de.hkokocin.widgetadapter.Widget
 
 class ExerciseListItemWidget : Widget<ExerciseListItem>(R.layout.lesson_exercise_item) {
@@ -16,8 +17,8 @@ class ExerciseListItemWidget : Widget<ExerciseListItem>(R.layout.lesson_exercise
     private val ivStar2: ImageView by viewId(R.id.iv_star2)
     private val ivStar3: ImageView by viewId(R.id.iv_star3)
 
-    private val inactiveColor by colorResource(R.color.primary_dark)
-    private val activeColor by colorResource(R.color.accent)
+    private val inactiveColor by lazy { view.context.attributeColor(R.attr.colorPrimaryDark) }
+    private val activeColor by colorResource(R.color.amber)
 
     override fun setData(data: ExerciseListItem) {
         tvTitle.text = data.title

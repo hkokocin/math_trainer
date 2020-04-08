@@ -5,6 +5,7 @@ import de.hkokocin.redukt.Action
 import de.hkokocin.redukt.ViewState
 
 sealed class LessonViewState: ViewState{
+    data class UpdateLesson(val title: String): LessonViewState()
     data class UpdateExercises(val exercises: List<ExerciseListItem>): LessonViewState()
     data class ExecuteCommand(val command: ActivityCommand): LessonViewState()
 }
