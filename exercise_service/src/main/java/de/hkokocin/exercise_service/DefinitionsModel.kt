@@ -1,7 +1,7 @@
 package de.hkokocin.exercise_service
 
 const val MAX_STARS = 3
-const val UNLOCK_GRADE_STAR_RATIO = 0.66f
+const val UNLOCK_GRADE_STAR_RATIO = 0.67f
 
 sealed class ProblemDefinition {
 

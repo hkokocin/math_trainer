@@ -27,11 +27,13 @@ class LoadGradesUseCase(
             val totalStars = grade.getTotalStars(lessonDefinitions)
             val starsToUnlockNextLevel = (totalStars * UNLOCK_GRADE_STAR_RATIO).toInt()
 
+            println("DEBUG: LoadGradesUseCase.adopt - $starsCollected // $totalStars -> $starsToUnlockNextLevel")
+
             GradeViewPageState(
                 index = index,
                 starsCollected = starsCollected,
                 starsRemaining = totalStars - starsCollected,
-                starsToNextLevel = max(starsCollected - starsToUnlockNextLevel, 0),
+                starsToNextLevel = max(starsToUnlockNextLevel - starsCollected, 0),
                 addLesson = createLessonViewState(lessonDefinitions[grade.addLessonId], starsByLessonId, emit),
                 subtractLesson = createLessonViewState(lessonDefinitions[grade.subtractLessonId], starsByLessonId, emit),
                 multiplyLesson = createLessonViewState(lessonDefinitions[grade.multiplyLessonId], starsByLessonId, emit),
@@ -47,10 +49,10 @@ class LoadGradesUseCase(
         starsByGrade: List<Int>,
         lessonDefinitions: Map<String, LessonDefinition>
     ): Boolean {
-        if(index == 0) return true
+        val previousIndex = if(index == 0) return true else index - 1
 
-        val starsCollected = starsByGrade[index]
-        val totalStars = gradeDefinitions[index - 1].getTotalStars(lessonDefinitions)
+        val starsCollected = starsByGrade[previousIndex]
+        val totalStars = gradeDefinitions[previousIndex].getTotalStars(lessonDefinitions)
         val starsToUnlockNextLevel = (totalStars * UNLOCK_GRADE_STAR_RATIO).toInt()
 
         return starsCollected >= starsToUnlockNextLevel
