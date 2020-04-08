@@ -36,7 +36,7 @@ data class GradeProgressWidgetState(
     val unlocked: Boolean
 )
 
-object ViewCreated : Action
+object ViewResumed : Action
 object AddClicked : Action
 object SubtractClicked : Action
 object MuliplyClicked : Action

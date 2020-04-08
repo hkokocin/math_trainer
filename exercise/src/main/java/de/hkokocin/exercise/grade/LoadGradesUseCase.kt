@@ -5,6 +5,7 @@ import de.hkokocin.exercise.R
 import de.hkokocin.exercise.lesson.LessonActivity
 import de.hkokocin.exercise_service.*
 import de.hkokocin.local_data.LocalScoreRepository
+import kotlin.math.max
 
 class LoadGradesUseCase(
     private val exercisesRepository: ExercisesRepository,
@@ -30,7 +31,7 @@ class LoadGradesUseCase(
                 index = index,
                 starsCollected = starsCollected,
                 starsRemaining = totalStars - starsCollected,
-                starsToNextLevel = totalStars - starsToUnlockNextLevel,
+                starsToNextLevel = max(starsCollected - starsToUnlockNextLevel, 0),
                 addLesson = createLessonViewState(lessonDefinitions[grade.addLessonId], starsByLessonId, emit),
                 subtractLesson = createLessonViewState(lessonDefinitions[grade.subtractLessonId], starsByLessonId, emit),
                 multiplyLesson = createLessonViewState(lessonDefinitions[grade.multiplyLessonId], starsByLessonId, emit),

@@ -1,5 +1,6 @@
 package de.hkokocin.exercise.grade
 
+import android.graphics.drawable.Drawable
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
@@ -15,19 +16,23 @@ import de.hkokocin.widgetadapter.WidgetAdapter
 
 
 class GradeView(
-    private val viewModel: GradeTreeViewModel,
+    private val viewModel: GradeViewModel,
     private val activity: BaseActivity,
     private val adapter: WidgetAdapter
 ) : BaseView() {
 
-    private val toolbar:MaterialToolbar by viewId(R.id.toolbar)
-    private val vpGrades:ViewPager2 by viewId(R.id.vp_grades)
+    private val toolbar: MaterialToolbar by viewId(R.id.toolbar)
+    private val vpGrades: ViewPager2 by viewId(R.id.vp_grades)
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate(lifecycleOwner: LifecycleOwner) {
         bindViews()
         bindViewModel(lifecycleOwner.lifecycle)
-        viewModel.dispatch(ViewCreated)
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    fun onResume() {
+        viewModel.dispatch(ViewResumed)
     }
 
     private fun bindViews() {

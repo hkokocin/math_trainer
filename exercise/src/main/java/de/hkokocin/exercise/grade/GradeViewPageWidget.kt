@@ -1,5 +1,6 @@
 package de.hkokocin.exercise.grade
 
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -77,6 +78,8 @@ class GradeViewPageWidget() : Widget<GradeViewPageState>(R.layout.grade_view_pag
     private val labelStarsRemaining: String by resourceId(R.string.grade_stars_remaining)
     private val labelStarsToNextLevel: String by resourceId(R.string.grade_stars_to_next_level)
 
+    private val icLocked: Drawable by resourceId(R.drawable.ic_locked_24dp)
+    private val icUnlocked: Drawable by resourceId(R.drawable.ic_unlocked_24dp)
 
     override fun onViewCreated(view: View) {
         addViews.flContainer.clipToOutline = true
@@ -90,6 +93,9 @@ class GradeViewPageWidget() : Widget<GradeViewPageState>(R.layout.grade_view_pag
         tvStarsCollected.text = labelStarsCollected.format(data.starsCollected)
         tvStarsRemaining.text = labelStarsRemaining.format(data.starsRemaining)
         tvStarsToNextLevel.text = labelStarsToNextLevel.format(data.starsToNextLevel, data.index + 2)
+
+        val lockIcon = if (data.starsToNextLevel == 0) icUnlocked else icLocked
+        tvStarsToNextLevel.setCompoundDrawablesWithIntrinsicBounds(lockIcon, null, null, null)
 
         llLevel.isInvisible = data.unlocked.not()
         tvStarsCollected.isInvisible = data.unlocked.not()
