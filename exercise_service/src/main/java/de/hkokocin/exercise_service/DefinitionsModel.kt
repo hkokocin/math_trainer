@@ -9,18 +9,41 @@ sealed class ProblemDefinition {
 
     data class Addition(
         override val score: Int,
+        val minimumValue: Int,
         val maximumValue: Int
-    ): ProblemDefinition()
+    ) : ProblemDefinition()
 
     data class Subtraction(
         override val score: Int,
+        val minimumValue: Int,
         val maximumValue: Int
-    ): ProblemDefinition()
+    ) : ProblemDefinition()
 
     data class Multiplication(
         override val score: Int,
-        val factor: Int
-    ): ProblemDefinition()
+        val factor: Int,
+        val secondFactorMin: Int,
+        val secondFactorMax: Int
+    ) : ProblemDefinition()
+
+    data class ReverseAddition(
+        override val score: Int,
+        val minimumValue: Int,
+        val maximumValue: Int
+    ) : ProblemDefinition()
+
+    data class ReverseSubtraction(
+        override val score: Int,
+        val minimumValue: Int,
+        val maximumValue: Int
+    ) : ProblemDefinition()
+
+    data class ReverseMultiplication(
+        override val score: Int,
+        val factor: Int,
+        val secondFactorMin: Int,
+        val secondFactorMax: Int
+    ) : ProblemDefinition()
 }
 
 data class ExerciseDefinition(
