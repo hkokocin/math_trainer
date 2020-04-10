@@ -38,7 +38,7 @@ class LoadGradesUseCase(
                 subtractLesson = createLessonViewState(lessonDefinitions[grade.subtractLessonId], starsByLessonId, emit),
                 multiplyLesson = createLessonViewState(lessonDefinitions[grade.multiplyLessonId], starsByLessonId, emit),
                 divideLesson = createLessonViewState(lessonDefinitions[grade.divideLessonId], starsByLessonId, emit),
-                unlocked = true//isGradeUnlocked(index, gradeDefinitions, starsByGrade, lessonDefinitions)
+                unlocked = isGradeUnlocked(index, gradeDefinitions, starsByGrade, lessonDefinitions)
             )
         }
     }

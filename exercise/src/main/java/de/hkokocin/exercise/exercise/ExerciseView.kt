@@ -1,8 +1,6 @@
 package de.hkokocin.exercise.exercise
 
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
-import android.os.VibrationEffect
 import android.view.View
 import android.view.animation.*
 import android.widget.Button
@@ -33,10 +31,11 @@ enum class ViewLayer {
 
 object AnimationDuration {
     const val ERROR = 2000L
+    const val MEDIUM = 1000L
     const val SHORT = 100L
 }
 
-object VibrationDuration{
+object VibrationDuration {
     const val SHORT = 20L
     const val LONG = 1200L
 }
@@ -54,6 +53,10 @@ class ExerciseView(
     private val tvTitle: TextView by viewId(R.id.tv_title)
     private val tvHighscore: TextView by viewId(R.id.tv_highscore)
     private val tvDescription: TextView by viewId(R.id.tv_description)
+    private val tvOneStarRequirement: TextView by viewId(R.id.tv_one_star_requirement)
+    private val tvTwoStarRequirement: TextView by viewId(R.id.tv_two_star_requirement)
+    private val tvThreeStarRequirement: TextView by viewId(R.id.tv_three_star_requirement)
+
     private val startViews by lazy { listOf(bStart, svIntroduction) }
 
     private val tvProblem: TextView by viewId(R.id.tv_problem)
@@ -62,18 +65,33 @@ class ExerciseView(
     private val bOption3: Button by viewId(R.id.b_option3)
     private val problemViews by lazy { listOf(tvProblem, bOption1, bOption2, bOption3) }
 
+    private val ivNewHighscore: ImageView by viewId(R.id.iv_new_highscore)
     private val tvScore: TextView by viewId(R.id.tv_score)
     private val ivStar1: ImageView by viewId(R.id.iv_star1)
     private val ivStar2: ImageView by viewId(R.id.iv_star2)
     private val ivStar3: ImageView by viewId(R.id.iv_star3)
     private val bBack: Button by viewId(R.id.b_back)
     private val bRestart: Button by viewId(R.id.b_restart)
-    private val resultViews by lazy { listOf(ivStar1, ivStar2, ivStar3, bRestart, bBack) }
+    private val resultViews by lazy { listOf(ivNewHighscore, ivStar1, ivStar2, ivStar3, bRestart, bBack) }
 
     private val translationOffset by lazy { activity.screenMetrics.heightPixels - bOption1.y }
 
     private val scoreLabel: String by resourceId(R.string.score)
     private val highscoreLabel: String by resourceId(R.string.highscore)
+
+    // ==============================================================================
+    // STATE HANDLING
+    // ==============================================================================
+
+
+    private fun bindViewModel(lifecycleOwner: LifecycleOwner) = viewModel.observe(lifecycleOwner.lifecycle) { update ->
+        when (update) {
+            is Initialization -> initialize(update)
+            is Start -> startExercise(update)
+            is NewProblem -> newProblem(update)
+            is Result -> hideProblemViewsAnimated { onHideOtherViewsForResultViews(update) }
+        }
+    }
 
     // ==============================================================================
     // INITIALIZATION
@@ -109,21 +127,16 @@ class ExerciseView(
     // UPDATES
     // ==============================================================================
 
-    private fun bindViewModel(lifecycleOwner: LifecycleOwner) = viewModel.observe(lifecycleOwner.lifecycle) { update ->
-        when (update) {
-            is Initialization -> initialize(update)
-            is Start -> startExercise(update)
-            is NewProblem -> newProblem(update)
-            is Result -> result(update)
-        }
-    }
-
     private fun initialize(initialization: Initialization) {
         showViews(START)
         tvTitle.text = initialization.title
         tvHighscore.text = highscoreLabel.format(initialization.highscore)
         tvDescription.text = initialization.description
         root.post { vProgressOverlay.translationY = -vProgressOverlay.height.toFloat() }
+
+        tvOneStarRequirement.text = scoreLabel.format(initialization.oneStarRequirement)
+        tvTwoStarRequirement.text = scoreLabel.format(initialization.twoStarRequirement)
+        tvThreeStarRequirement.text = scoreLabel.format(initialization.threeStarRequirement)
     }
 
     private fun startExercise(exerciseStart: Start) {
@@ -150,18 +163,17 @@ class ExerciseView(
         }
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun result(result: Result) {
-        hideProblemViewsAnimated {
-            showViews(RESULT)
-            showResultViewsAnimated()
+    private fun onHideOtherViewsForResultViews(result: Result) {
+        showViews(RESULT)
 
-            ivStar1.setImageResource(if (result.stars >= 1) R.drawable.ic_star_96dp else R.drawable.ic_star_border_96dp)
-            ivStar2.setImageResource(if (result.stars >= 2) R.drawable.ic_star_96dp else R.drawable.ic_star_border_96dp)
-            ivStar3.setImageResource(if (result.stars >= 3) R.drawable.ic_star_96dp else R.drawable.ic_star_border_96dp)
+        ivNewHighscore.isVisible = result.newHighscore
+        showResultViewsAnimated(result.newHighscore)
 
-            tvScore.text = "${result.score} $scoreLabel"
-        }
+        ivStar1.setImageResource(if (result.stars >= 1) R.drawable.ic_star_96dp else R.drawable.ic_star_border_96dp)
+        ivStar2.setImageResource(if (result.stars >= 2) R.drawable.ic_star_96dp else R.drawable.ic_star_border_96dp)
+        ivStar3.setImageResource(if (result.stars >= 3) R.drawable.ic_star_96dp else R.drawable.ic_star_border_96dp)
+
+        tvScore.text = scoreLabel.format(result.score)
     }
 
     // ==============================================================================
@@ -175,7 +187,7 @@ class ExerciseView(
     }
 
     private fun restart() {
-        activity.start<ExerciseActivity>{
+        activity.start<ExerciseActivity> {
             putExtra(EXERCISE_DEFINITION_ID, activity.extra<String>(EXERCISE_DEFINITION_ID))
         }
         activity.finish()
@@ -213,10 +225,14 @@ class ExerciseView(
         bOption3.hideOptionOnErrorAnimated(onEnd)
     }
 
-    private fun showResultViewsAnimated() {
-        ivStar1.showStarAnimated()
-        ivStar2.showStarAnimated()
-        ivStar3.showStarAnimated()
+    private fun showResultViewsAnimated(showHighscore: Boolean) {
+        ivStar1.scaleInBouncing()
+        ivStar2.scaleInBouncing()
+        ivStar3.scaleInBouncing()
+
+        if (showHighscore)
+            ivNewHighscore.scaleInBouncing()
+
         tvScore.fadeIn()
         bRestart.translationY = translationOffset
         bRestart.showBottomButtonAnimated(2100)
@@ -304,17 +320,34 @@ class ExerciseView(
         }
     }
 
-    private fun View.showStarAnimated() {
+    private fun View.scaleInBouncing(delay: Long = 0) {
         scaleX = 0f
         scaleY = 0f
 
         ValueAnimator.ofFloat(0f, 1f).apply {
-            duration = 1000
+            duration = AnimationDuration.MEDIUM
             interpolator = BounceInterpolator()
+            startDelay = delay
             addUpdateListener {
                 scaleX = it.animatedValue as Float
                 scaleY = it.animatedValue as Float
             }
+            start()
+        }
+    }
+
+    private fun View.scaleOut(onEnd: () -> Unit = {}) {
+        scaleX = 1f
+        scaleY = 1f
+
+        ValueAnimator.ofFloat(1f, 0f).apply {
+            duration = AnimationDuration.SHORT
+            interpolator = AccelerateInterpolator()
+            addUpdateListener {
+                scaleX = it.animatedValue as Float
+                scaleY = it.animatedValue as Float
+            }
+            addListener(onEnd = { onEnd() })
             start()
         }
     }

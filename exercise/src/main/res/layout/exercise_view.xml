@@ -3,11 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/activity_horizontal_margin"
     android:background="?colorPrimary"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:theme="@style/AppTheme.Teal">
 
     <View
         android:id="@+id/v_progress_overlay"
@@ -25,51 +27,180 @@
         app:navigationIcon="?homeAsUpIndicator"
         app:titleTextColor="@color/design_default_color_on_primary" />
 
-    <!-- START VIEWS -->
+    <!--    &lt;!&ndash; START VIEWS &ndash;&gt;-->
 
     <ScrollView
         android:id="@+id/sv_introduction"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         app:layout_constraintBottom_toTopOf="@+id/b_start"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
                 android:textColor="@color/design_default_color_on_primary"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Some Nice Title" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_highscore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                 android:textColor="@color/design_default_color_on_primary"
                 android:textSize="20sp"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                tools:text="Rekord: 20 Punkte"/>
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:text="Rekord: 20 Punkte" />
 
             <TextView
                 android:id="@+id/tv_description"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/design_default_color_on_primary"
-                android:textSize="16sp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                app:layout_constraintTop_toBottomOf="@id/tv_highscore"
                 tools:text="Dies ist eine relativ kurze aber dennoch sehr informative Beschreibung. Es ist auf jeden Fall hilfreich sie zu lesen statt sich später zu ärgern, dass man verkackt hat" />
-        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/one_star_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_one_star_requirement"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_one_star_requirement" />
+
+            <ImageView
+                android:id="@+id/one_star_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                android:tint="@color/teal_dark"
+                app:layout_constraintBottom_toBottomOf="@id/tv_one_star_requirement"
+                app:layout_constraintLeft_toRightOf="@id/one_star_1"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintTop_toTopOf="@id/tv_one_star_requirement" />
+
+            <ImageView
+                android:id="@+id/one_star_3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                android:tint="@color/teal_dark"
+                app:layout_constraintBottom_toBottomOf="@id/tv_one_star_requirement"
+                app:layout_constraintLeft_toRightOf="@id/one_star_2"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintTop_toTopOf="@id/tv_one_star_requirement" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_one_star_requirement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_normal"
+                android:paddingHorizontal="@dimen/space_small"
+                android:paddingVertical="@dimen/space_tiny"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toRightOf="@id/one_star_3"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description" />
+
+            <ImageView
+                android:id="@+id/two_stars_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_two_star_requirement"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintTop_toTopOf="@id/tv_two_star_requirement" />
+
+            <ImageView
+                android:id="@+id/two_stars_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_two_star_requirement"
+                app:layout_constraintLeft_toRightOf="@id/two_stars_1"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintTop_toTopOf="@id/tv_two_star_requirement" />
+
+            <ImageView
+                android:id="@+id/two_stars_3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                android:tint="@color/teal_dark"
+                app:layout_constraintBottom_toBottomOf="@id/tv_two_star_requirement"
+                app:layout_constraintLeft_toRightOf="@id/two_stars_2"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintTop_toTopOf="@id/tv_two_star_requirement" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_two_star_requirement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/space_small"
+                android:paddingVertical="@dimen/space_tiny"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toRightOf="@id/two_stars_3"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_one_star_requirement" />
+
+            <ImageView
+                android:id="@+id/three_stars_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_three_star_requirement"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintTop_toTopOf="@id/tv_three_star_requirement" />
+
+            <ImageView
+                android:id="@+id/three_stars_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_three_star_requirement"
+                app:layout_constraintLeft_toRightOf="@id/three_stars_1"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintTop_toTopOf="@id/tv_three_star_requirement" />
+
+            <ImageView
+                android:id="@+id/three_stars_3"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star_96dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_three_star_requirement"
+                app:layout_constraintLeft_toRightOf="@id/three_stars_2"
+                app:layout_constraintTop_toBottomOf="@id/tv_description"
+                app:layout_constraintTop_toTopOf="@id/tv_three_star_requirement" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_three_star_requirement"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/space_small"
+                android:paddingVertical="@dimen/space_tiny"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                app:layout_constraintLeft_toRightOf="@id/three_stars_3"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_two_star_requirement" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <Button
@@ -82,12 +213,12 @@
 
     <!-- PROBLEM VIEWS -->
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_problem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
         android:textColor="@color/design_default_color_on_primary"
-        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/b_option1"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -131,25 +262,37 @@
 
     <!-- RESULT VIEWS -->
 
-    <TextView
+    <ImageView
+        android:id="@+id/iv_new_highscore"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:src="@drawable/ic_trophy"
+        app:layout_constraintBottom_toTopOf="@id/tv_score"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
         android:textColor="@color/design_default_color_on_primary"
-        android:textSize="18sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/iv_star3"
+        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_new_highscore"
         tools:text="12 Punkte" />
 
     <ImageView
         android:id="@+id/iv_star1"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
-        app:layout_constraintBottom_toTopOf="@id/b_restart"
+        app:layout_constraintBottom_toBottomOf="@id/iv_star3"
         app:layout_constraintRight_toLeftOf="@id/iv_star3"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/iv_star3"
         tools:src="@drawable/ic_star_96dp" />
 
     <ImageView
@@ -157,18 +300,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/b_restart"
+        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/tv_score"
         tools:src="@drawable/ic_star_border_96dp" />
 
     <ImageView
         android:id="@+id/iv_star2"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
-        app:layout_constraintBottom_toTopOf="@id/b_restart"
+        app:layout_constraintBottom_toBottomOf="@id/iv_star3"
         app:layout_constraintLeft_toRightOf="@id/iv_star3"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/iv_star3"
         tools:src="@drawable/ic_star_96dp" />
 
     <com.google.android.material.button.MaterialButton
@@ -178,8 +322,8 @@
         android:layout_height="wrap_content"
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/b_restart"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/b_restart" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/b_restart"
@@ -189,6 +333,6 @@
         android:text="@string/restart_exercise"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/b_back"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

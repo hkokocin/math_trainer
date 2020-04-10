@@ -5,6 +5,8 @@ private val MODERATE_TIERS = listOf(7, 14, 18)
 private val HARD_TIERS = listOf(6, 10, 14)
 private val X_HARD_TIERS = listOf(5, 9, 12)
 
+private const val DEFAULT_DURATION = 5
+
 // ==============================================================================
 // EXERCISES
 // ==============================================================================
@@ -15,7 +17,7 @@ private val X_HARD_TIERS = listOf(5, 9, 12)
 
 val ADD_5 = ExerciseDefinition(
     "ADD_5",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Addition(1, 0, 5)),
     EASY_TIERS,
     "Addition bis 5",
@@ -24,7 +26,7 @@ val ADD_5 = ExerciseDefinition(
 
 val REVERSE_ADD_5 = ExerciseDefinition(
     "REVERSE_ADD_5",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.ReverseAddition(1, 0, 5)),
     MODERATE_TIERS,
     "Addition bis 5 (Umkehraufgaben)",
@@ -33,7 +35,7 @@ val REVERSE_ADD_5 = ExerciseDefinition(
 
 val ADD_5_10 = ExerciseDefinition(
     "ADD_10",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Addition(1, 6, 10)),
     EASY_TIERS,
     "Addition bis 10",
@@ -42,7 +44,7 @@ val ADD_5_10 = ExerciseDefinition(
 
 val ADD_10 = ExerciseDefinition(
     "ADD_10",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Addition(1, 0, 10)),
     EASY_TIERS,
     "Addition bis 10",
@@ -51,7 +53,7 @@ val ADD_10 = ExerciseDefinition(
 
 val REVERSE_ADD_10 = ExerciseDefinition(
     "REVERSE_ADD_10",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.ReverseAddition(1, 0, 10)),
     MODERATE_TIERS,
     "Addition bis 10 (Umkehraufgaben)",
@@ -60,7 +62,7 @@ val REVERSE_ADD_10 = ExerciseDefinition(
 
 val COMBINED_ADD_10 = ExerciseDefinition(
     "COMBINED_ADD_10",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Addition(1, 0, 10),
         ProblemDefinition.ReverseAddition(1, 0, 10)
@@ -72,7 +74,7 @@ val COMBINED_ADD_10 = ExerciseDefinition(
 
 val ADD_20 = ExerciseDefinition(
     "ADD_20",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Addition(1, 0, 20)),
     EASY_TIERS,
     "Addition bis 20",
@@ -81,7 +83,7 @@ val ADD_20 = ExerciseDefinition(
 
 val REVERSE_ADD_20 = ExerciseDefinition(
     "REVERSE_ADD_20",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.ReverseAddition(1, 0, 20)),
     MODERATE_TIERS,
     "Addition bis 20 (Umkehraufgaben)",
@@ -90,7 +92,7 @@ val REVERSE_ADD_20 = ExerciseDefinition(
 
 val COMBINED_ADD_20 = ExerciseDefinition(
     "COMBINED_ADD_20",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Addition(1, 0, 20),
         ProblemDefinition.ReverseAddition(1, 0, 20)
@@ -102,7 +104,7 @@ val COMBINED_ADD_20 = ExerciseDefinition(
 
 val ADD_100 = ExerciseDefinition(
     "ADD_100",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Addition(1, 0, 100)),
     HARD_TIERS,
     "Addition bis 100",
@@ -111,7 +113,7 @@ val ADD_100 = ExerciseDefinition(
 
 val REVERSE_ADD_100 = ExerciseDefinition(
     "REVERSE_ADD_100",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.ReverseAddition(1, 0, 100)),
     X_HARD_TIERS,
     "Addition bis 100 (Umkehraufgaben)",
@@ -120,7 +122,7 @@ val REVERSE_ADD_100 = ExerciseDefinition(
 
 val COMBINED_ADD_100 = ExerciseDefinition(
     "COMBINED_ADD_100",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Addition(1, 0, 100),
         ProblemDefinition.ReverseAddition(1, 0, 100)
@@ -136,7 +138,7 @@ val COMBINED_ADD_100 = ExerciseDefinition(
 
 val SUB_5 = ExerciseDefinition(
     "SUB_5",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Subtraction(1, 0, 5)),
     EASY_TIERS,
     "Subtraktion bis 5",
@@ -145,16 +147,16 @@ val SUB_5 = ExerciseDefinition(
 
 val SUB_5_10 = ExerciseDefinition(
     "SUB_5",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Subtraction(1, 6, 10)),
     EASY_TIERS,
-    "Subtraktion bis 5",
+    "Subtraktion 5 - 10",
     ""
 )
 
 val REVERSE_SUB_5 = ExerciseDefinition(
     "REVERSE_SUB_5",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.ReverseSubtraction(1, 0, 5)),
     EASY_TIERS,
     "Subtraktion bis 5 (Umkehraufgaben)",
@@ -163,7 +165,7 @@ val REVERSE_SUB_5 = ExerciseDefinition(
 
 val SUB_10 = ExerciseDefinition(
     "SUB_10",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Subtraction(1, 0, 10)),
     EASY_TIERS,
     "Subtraktion bis 10",
@@ -172,7 +174,7 @@ val SUB_10 = ExerciseDefinition(
 
 val REVERSE_SUB_10 = ExerciseDefinition(
     "REVERSE_SUB_10",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.ReverseSubtraction(1, 0, 10)),
     MODERATE_TIERS,
     "Subtraktion bis 10 (Umkehraufgaben)",
@@ -181,7 +183,7 @@ val REVERSE_SUB_10 = ExerciseDefinition(
 
 val COMBINED_SUB_10 = ExerciseDefinition(
     "COMBINED_SUB_10",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Subtraction(1, 0, 10),
         ProblemDefinition.ReverseSubtraction(1, 0, 10)
@@ -193,7 +195,7 @@ val COMBINED_SUB_10 = ExerciseDefinition(
 
 val SUB_20 = ExerciseDefinition(
     "SUB_20",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Subtraction(1, 0, 20)),
     EASY_TIERS,
     "Subtraktion bis 20",
@@ -202,7 +204,7 @@ val SUB_20 = ExerciseDefinition(
 
 val REVERSE_SUB_20 = ExerciseDefinition(
     "REVERSE_SUB_20",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.ReverseSubtraction(1, 0, 20)),
     MODERATE_TIERS,
     "Subtraktion bis 20 (Umkehraufgaben)",
@@ -211,7 +213,7 @@ val REVERSE_SUB_20 = ExerciseDefinition(
 
 val COMBINED_SUB_20 = ExerciseDefinition(
     "COMBINED_SUB_20",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Subtraction(1, 0, 20),
         ProblemDefinition.ReverseSubtraction(1, 0, 20)
@@ -223,7 +225,7 @@ val COMBINED_SUB_20 = ExerciseDefinition(
 
 val SUB_100 = ExerciseDefinition(
     "SUB_100",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.Subtraction(1, 0, 100)),
     HARD_TIERS,
     "Subtraktion bis 100",
@@ -232,7 +234,7 @@ val SUB_100 = ExerciseDefinition(
 
 val REVERSE_SUB_100 = ExerciseDefinition(
     "REVERSE_SUB_100",
-    60,
+    DEFAULT_DURATION,
     listOf(ProblemDefinition.ReverseSubtraction(1, 0, 100)),
     X_HARD_TIERS,
     "Subtraktion bis 100 (Umkehraufgaben)",
@@ -241,7 +243,7 @@ val REVERSE_SUB_100 = ExerciseDefinition(
 
 val COMBINED_SUB_100 = ExerciseDefinition(
     "COMBINED_SUB_100",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Subtraction(1, 0, 100),
         ProblemDefinition.ReverseSubtraction(1, 0, 100)
@@ -258,7 +260,7 @@ val COMBINED_SUB_100 = ExerciseDefinition(
 val MULTIPLICATIONS = (1..10).map {
     ExerciseDefinition(
         "MULTIPLICATION_$it",
-        60,
+        DEFAULT_DURATION,
         listOf(ProblemDefinition.Multiplication(1, it, 1, 10)),
         MODERATE_TIERS,
         "Multiplikation mit $it",
@@ -269,7 +271,7 @@ val MULTIPLICATIONS = (1..10).map {
 val MULTIPLICATIONS_LOW = (1..10).map {
     ExerciseDefinition(
         "MULTIPLICATION_LOW_$it",
-        60,
+        DEFAULT_DURATION,
         listOf(ProblemDefinition.Multiplication(1, it, 1, 5)),
         MODERATE_TIERS,
         "Multiplikation mit $it (1-5)",
@@ -280,7 +282,7 @@ val MULTIPLICATIONS_LOW = (1..10).map {
 val MULTIPLICATIONS_HIGH = (1..10).map {
     ExerciseDefinition(
         "MULTIPLICATION_HIGH_$it",
-        60,
+        DEFAULT_DURATION,
         listOf(ProblemDefinition.Multiplication(1, it, 6, 10)),
         MODERATE_TIERS,
         "Multiplikation mit $it (6-10)",
@@ -291,7 +293,7 @@ val MULTIPLICATIONS_HIGH = (1..10).map {
 val REVERSE_MULTIPLICATIONS = (1..10).map {
     ExerciseDefinition(
         "REVERSE_MULTIPLICATION_$it",
-        60,
+        DEFAULT_DURATION,
         listOf(ProblemDefinition.ReverseMultiplication(1, it, 1, 10)),
         HARD_TIERS,
         "Multiplikation mit $it (Umkehraufgaben)",
@@ -302,7 +304,7 @@ val REVERSE_MULTIPLICATIONS = (1..10).map {
 val REVERSE_MULTIPLICATIONS_LOW = (1..10).map {
     ExerciseDefinition(
         "REVERSE_LOW_MULTIPLICATION_$it",
-        60,
+        DEFAULT_DURATION,
         listOf(ProblemDefinition.ReverseMultiplication(1, it, 1, 5)),
         MODERATE_TIERS,
         "Multiplikation mit $it (1-5, Umkehraufgaben)",
@@ -313,7 +315,7 @@ val REVERSE_MULTIPLICATIONS_LOW = (1..10).map {
 val REVERSE_MULTIPLICATIONS_HIGH = (1..10).map {
     ExerciseDefinition(
         "REVERSE_HIGH_MULTIPLICATION_$it",
-        60,
+        DEFAULT_DURATION,
         listOf(ProblemDefinition.ReverseMultiplication(1, it, 6, 10)),
         MODERATE_TIERS,
         "Multiplikation mit $it (6-10, Umkehraufgaben)",
@@ -323,7 +325,7 @@ val REVERSE_MULTIPLICATIONS_HIGH = (1..10).map {
 
 val COMBINED_MULTIPLICATIONS_1 = ExerciseDefinition(
     "COMBINED_MULTIPLICATIONS_1",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Multiplication(1, 1, 1, 10),
         ProblemDefinition.Multiplication(1, 10, 1, 10)
@@ -335,7 +337,7 @@ val COMBINED_MULTIPLICATIONS_1 = ExerciseDefinition(
 
 val COMBINED_MULTIPLICATIONS_2 = ExerciseDefinition(
     "COMBINED_MULTIPLICATIONS_2",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Multiplication(1, 2, 1, 10),
         ProblemDefinition.Multiplication(1, 5, 1, 10),
@@ -348,7 +350,7 @@ val COMBINED_MULTIPLICATIONS_2 = ExerciseDefinition(
 
 val COMBINED_MULTIPLICATIONS_3 = ExerciseDefinition(
     "COMBINED_MULTIPLICATIONS_3",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Multiplication(1, 3, 1, 10),
         ProblemDefinition.Multiplication(1, 4, 1, 10),
@@ -361,7 +363,7 @@ val COMBINED_MULTIPLICATIONS_3 = ExerciseDefinition(
 
 val COMBINED_MULTIPLICATIONS_4 = ExerciseDefinition(
     "COMBINED_MULTIPLICATIONS_4",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Multiplication(1, 6, 1, 10),
         ProblemDefinition.Multiplication(1, 7, 1, 10)
@@ -373,7 +375,7 @@ val COMBINED_MULTIPLICATIONS_4 = ExerciseDefinition(
 
 val COMBINED_MULTIPLICATIONS_5 = ExerciseDefinition(
     "COMBINED_MULTIPLICATIONS_5",
-    60,
+    DEFAULT_DURATION,
     listOf(
         ProblemDefinition.Multiplication(1, 1, 1, 10),
         ProblemDefinition.Multiplication(1, 2, 1, 10),

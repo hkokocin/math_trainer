@@ -22,6 +22,7 @@ class Exercise(
     private val problemGenerator: ProblemGenerator
 ) {
     private var currentProblem: Problem? = null
+    var result: ExerciseResult? = null
 
     private val solutions = mutableListOf<ProblemResult>()
 
@@ -45,7 +46,7 @@ class Exercise(
 
         val stars = definition.calculateStars(score)
 
-        ExerciseResult(score, stars)
+        ExerciseResult(score, stars).also { result = it }
     }
 
     fun solve(solutionIndex: Int): Boolean {

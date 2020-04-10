@@ -18,7 +18,7 @@
         android:background="?colorPrimary"
         app:layout_constraintBottom_toBottomOf="@id/ll_level"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_header"
@@ -113,12 +113,12 @@
         android:id="@+id/iv_lock"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:src="@drawable/ic_lock_black"
         android:alpha="0.5"
+        android:src="@drawable/ic_lock_black"
+        app:layout_constraintBottom_toBottomOf="@id/v_header_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/v_header_bg"
-        app:layout_constraintBottom_toBottomOf="@id/v_header_bg"/>
+        app:layout_constraintTop_toTopOf="@id/v_header_bg" />
 
     <!-- ================================== -->
     <!-- ADD -->
@@ -127,7 +127,8 @@
     <View
         android:id="@+id/v_track_to_add"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_tiny"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
         android:background="@color/green_light"
         app:layout_constraintBottom_toBottomOf="@id/fl_add"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -137,7 +138,8 @@
     <View
         android:id="@+id/v_track_from_add"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_tiny"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
         android:background="@color/green_light"
         app:layout_constraintBottom_toBottomOf="@id/fl_add"
         app:layout_constraintLeft_toRightOf="@id/gl_center"
@@ -148,8 +150,8 @@
         android:id="@+id/fl_add"
         android:layout_width="196dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/space_xlarge"
-        android:layout_marginBottom="@dimen/space_normal"
+        android:layout_marginTop="@dimen/grade_item_top_margin"
+        android:layout_marginBottom="@dimen/grade_item_margin"
         android:background="@drawable/lesson_exercise_background"
         android:backgroundTint="@color/green"
         android:elevation="@dimen/space_tiny"
@@ -203,7 +205,8 @@
     <View
         android:id="@+id/v_track_to_subtract"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_tiny"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
         android:background="@color/purple_light"
         app:layout_constraintBottom_toBottomOf="@id/fl_subtract"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -213,7 +216,8 @@
     <View
         android:id="@+id/v_track_from_subtract"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_tiny"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
         android:background="@color/purple_light"
         app:layout_constraintBottom_toBottomOf="@id/fl_subtract"
         app:layout_constraintLeft_toRightOf="@id/gl_center"
@@ -224,7 +228,7 @@
         android:id="@+id/fl_subtract"
         android:layout_width="196dp"
         android:layout_height="0dp"
-        android:layout_marginVertical="@dimen/space_normal"
+        android:layout_marginVertical="@dimen/grade_item_margin"
         android:background="@drawable/lesson_exercise_background"
         android:backgroundTint="@color/purple"
         android:elevation="@dimen/space_tiny"
@@ -278,7 +282,8 @@
     <View
         android:id="@+id/v_track_to_multiply"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_tiny"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
         android:background="@color/cyan_light"
         app:layout_constraintBottom_toBottomOf="@id/fl_multiply"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -288,7 +293,8 @@
     <View
         android:id="@+id/v_track_from_multiply"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_tiny"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
         android:background="@color/cyan_light"
         app:layout_constraintBottom_toBottomOf="@id/fl_multiply"
         app:layout_constraintLeft_toRightOf="@id/gl_center"
@@ -300,7 +306,7 @@
         android:id="@+id/fl_multiply"
         android:layout_width="196dp"
         android:layout_height="0dp"
-        android:layout_marginVertical="@dimen/space_normal"
+        android:layout_marginVertical="@dimen/grade_item_margin"
         android:background="@drawable/lesson_exercise_background"
         android:backgroundTint="@color/cyan"
         android:elevation="@dimen/space_tiny"
@@ -355,7 +361,8 @@
     <View
         android:id="@+id/v_track_to_divide"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_tiny"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
         android:background="@color/orange_light"
         app:layout_constraintBottom_toBottomOf="@id/fl_divide"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -365,7 +372,8 @@
     <View
         android:id="@+id/v_track_from_divide"
         android:layout_width="0dp"
-        android:layout_height="@dimen/space_tiny"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/space_normal"
         android:background="@color/orange_light"
         app:layout_constraintBottom_toBottomOf="@id/fl_divide"
         app:layout_constraintLeft_toRightOf="@id/gl_center"
@@ -376,7 +384,7 @@
         android:id="@+id/fl_divide"
         android:layout_width="196dp"
         android:layout_height="0dp"
-        android:layout_marginVertical="@dimen/space_normal"
+        android:layout_marginVertical="@dimen/grade_item_margin"
         android:background="@drawable/lesson_exercise_background"
         android:backgroundTint="@color/orange"
         android:elevation="@dimen/space_tiny"

@@ -37,7 +37,3 @@ data class GradeProgressWidgetState(
 )
 
 object ViewResumed : Action
-object AddClicked : Action
-object SubtractClicked : Action
-object MuliplyClicked : Action
-object DivideClicked : Action

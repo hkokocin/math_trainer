@@ -16,6 +16,9 @@ class ExercisesRepository(private val exerciseGenerator: ExerciseGenerator) {
         .first { it.id == id }
         .run { exerciseGenerator.create(this) }
 
+    suspend fun getExercise(id: String): ExerciseDefinition = exercises
+        .first { it.id == id }
+
     suspend fun getExerciseDefinitions(lessonId: String): Deferred<List<ExerciseDefinition>> = scopeAsync {
         lessons.first { it.id == lessonId }.exercises
     }

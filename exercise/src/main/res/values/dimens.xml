@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="grade_item_top_margin">@dimen/space_normal</dimen>
+    <dimen name="grade_item_margin">@dimen/space_small</dimen>
+</resources>

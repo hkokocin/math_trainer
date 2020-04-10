@@ -36,7 +36,16 @@ class ExerciseViewModelShard(
     private fun initializeExercise(definitionId: String) = jobs.launch {
         exerciseDefinitionId = definitionId
         exercise = exercisesRepository.createExercise(definitionId)
-        emit(Initialization(exercise.title, exercise.description, scoreRepository.getHighscore(exerciseDefinitionId)))
+        val exerciseDefinition = exercisesRepository.getExercise(definitionId)
+        val state = Initialization(
+            exercise.title,
+            exercise.description,
+            scoreRepository.getHighscore(exerciseDefinitionId),
+            exerciseDefinition.performanceTiers[0],
+            exerciseDefinition.performanceTiers[1],
+            exerciseDefinition.performanceTiers[2]
+        )
+        emit(state)
     }
 
     private fun startExercise() {
@@ -47,7 +56,10 @@ class ExerciseViewModelShard(
 
     private fun runExercise() = jobs.launch {
         val result = exercise.run().await()
-        emit(Result(result.score, result.stars))
+        val oldHighscore = scoreRepository.getHighscore(exerciseDefinitionId)
+
+        emit(Result(result.score, result.stars, result.score > oldHighscore))
+
         scoreRepository.updateHighscore(exerciseDefinitionId, result.score)
     }
 

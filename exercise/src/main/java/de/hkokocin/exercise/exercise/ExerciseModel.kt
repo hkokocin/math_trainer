@@ -22,15 +22,25 @@ sealed class ExerciseViewState : ViewState {
     data class Initialization(
         val title: String,
         val description: String,
-        val highscore: Int
+        val highscore: Int,
+        val oneStarRequirement: Int,
+        val twoStarRequirement: Int,
+        val threeStarRequirement: Int
     ) : ExerciseViewState()
+
+//    data class NewHighscore(
+//        val score: Int
+//    ) : ExerciseViewState()
 
     data class Result(
         val score: Int,
-        val stars: Int
+        val stars: Int,
+        val newHighscore: Boolean
     ) : ExerciseViewState()
 }
 
 internal data class InitializeExercise(val exerciseDefinitionId: String) : Action
 internal object StartExercise : Action
+
+//internal object DismissNewHighscore : Action
 internal data class SelectOption(val solutionIndex: Int) : Action
