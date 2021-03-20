@@ -17,7 +17,7 @@ class AdditionGeneratorTest {
 
     val classToTest = AdditionGenerator(optionsGenerator, random)
 
-    val problemDefinition = ProblemDefinition.Addition(1, 10)
+    val problemDefinition = ProblemDefinition.Numeric.Addition(1, 0, 10)
 
     @BeforeEach
     fun beforeEachTest() {

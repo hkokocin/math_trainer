@@ -4,11 +4,11 @@ import de.hkokocin.exercise_service.Problem
 import de.hkokocin.exercise_service.ProblemDefinition
 import kotlin.random.Random
 
-class SubstractionGenerator(
+class SubtractionGenerator(
     private val optionsGenerator: OptionsGenerator,
     private val random: Random
 ) {
-    fun create(definition: ProblemDefinition.Subtraction): Problem {
+    fun create(definition: ProblemDefinition.Numeric.Subtraction): Problem {
         val maximum = definition.maximumValue
         val solution = random.nextInt(definition.minimumValue + 1, maximum)
         val a = if(solution == maximum - 1) maximum else random.nextInt(solution, maximum) + 1

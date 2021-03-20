@@ -1,6 +1,5 @@
 package de.hkokocin.exercise.lesson
 
-import de.hkokocin.exercise_service.ExerciseDefinition
 import de.hkokocin.exercise_service.ExercisesRepository
 import de.hkokocin.exercise_service.calculateStars
 import de.hkokocin.local_data.LocalScoreRepository
@@ -18,10 +17,12 @@ class LoadExerciseListUseCase(
 
         val stars = exercises.map { it.calculateStars(scoreRepository.getHighscore(it.id)) }
 
-        return exercises.mapIndexed {index, exercise -> ExerciseListItem(
-            exercise.title,
-            exercise.calculateStars(scoreRepository.getHighscore(exercise.id)),
-            if(index == 0) true else stars[index - 1] >= 1
-        ) { dispatch(ExerciseSelected(exercise.id)) } }
+        return exercises.mapIndexed { index, exercise ->
+            ExerciseListItem(
+                exercise.title,
+                exercise.calculateStars(scoreRepository.getHighscore(exercise.id)),
+                if (index == 0) true else stars[index - 1] >= 1
+            ) { dispatch(ExerciseSelected(exercise.id)) }
+        }
     }
 }

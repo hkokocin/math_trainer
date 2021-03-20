@@ -8,7 +8,7 @@ class ReverseAdditionGenerator(
     private val optionsGenerator: OptionsGenerator,
     private val random: Random
 ) {
-    fun create(definition: ProblemDefinition.ReverseAddition): Problem {
+    fun create(definition: ProblemDefinition.Numeric.ReverseAddition): Problem {
         val equationSolution = random.nextInt(definition.minimumValue + 2, definition.maximumValue + 1)
         val a = random.nextInt(definition.minimumValue + 1, equationSolution)
         val b = equationSolution - a

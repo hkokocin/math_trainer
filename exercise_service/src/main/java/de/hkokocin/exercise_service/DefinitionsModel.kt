@@ -7,42 +7,59 @@ sealed class ProblemDefinition {
 
     abstract val score: Int
 
-    data class Addition(
-        override val score: Int,
-        val minimumValue: Int,
-        val maximumValue: Int
-    ) : ProblemDefinition()
+    sealed class Numeric : ProblemDefinition() {
 
-    data class Subtraction(
-        override val score: Int,
-        val minimumValue: Int,
-        val maximumValue: Int
-    ) : ProblemDefinition()
+        data class Addition(
+            override val score: Int,
+            val minimumValue: Int,
+            val maximumValue: Int
+        ) : ProblemDefinition()
 
-    data class Multiplication(
-        override val score: Int,
-        val factor: Int,
-        val secondFactorMin: Int,
-        val secondFactorMax: Int
-    ) : ProblemDefinition()
+        data class Subtraction(
+            override val score: Int,
+            val minimumValue: Int,
+            val maximumValue: Int
+        ) : ProblemDefinition()
 
-    data class ReverseAddition(
-        override val score: Int,
-        val minimumValue: Int,
-        val maximumValue: Int
-    ) : ProblemDefinition()
+        data class Multiplication(
+            override val score: Int,
+            val factor: Int,
+            val secondFactorMin: Int,
+            val secondFactorMax: Int
+        ) : ProblemDefinition()
 
-    data class ReverseSubtraction(
-        override val score: Int,
-        val minimumValue: Int,
-        val maximumValue: Int
-    ) : ProblemDefinition()
+        data class Division(
+            override val score: Int,
+            val divisor: Int,
+            val solutionMin: Int,
+            val solutionMax: Int
+        ) : ProblemDefinition()
 
-    data class ReverseMultiplication(
+        data class ReverseAddition(
+            override val score: Int,
+            val minimumValue: Int,
+            val maximumValue: Int
+        ) : ProblemDefinition()
+
+        data class ReverseSubtraction(
+            override val score: Int,
+            val minimumValue: Int,
+            val maximumValue: Int
+        ) : ProblemDefinition()
+
+        data class ReverseMultiplication(
+            override val score: Int,
+            val factor: Int,
+            val secondFactorMin: Int,
+            val secondFactorMax: Int
+        ) : ProblemDefinition()
+    }
+
+    data class ReverseDivision(
         override val score: Int,
-        val factor: Int,
-        val secondFactorMin: Int,
-        val secondFactorMax: Int
+        val divisor: Int,
+        val solutionMin: Int,
+        val solutionMax: Int
     ) : ProblemDefinition()
 }
 

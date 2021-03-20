@@ -10,7 +10,7 @@ class MultiplicationGenerator(
     private val optionsGenerator: OptionsGenerator,
     private val random: Random
 ) {
-    fun create(definition: ProblemDefinition.Multiplication): Problem {
+    fun create(definition: ProblemDefinition.Numeric.Multiplication): Problem {
         val a = random.nextInt(definition.secondFactorMin, definition.secondFactorMax + 1)
         val solution = a * definition.factor
 

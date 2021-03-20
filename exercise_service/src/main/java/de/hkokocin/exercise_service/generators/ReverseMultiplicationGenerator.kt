@@ -8,7 +8,7 @@ class ReverseMultiplicationGenerator(
     private val optionsGenerator: OptionsGenerator,
     private val random: Random
 ) {
-    fun create(definition: ProblemDefinition.ReverseMultiplication): Problem {
+    fun create(definition: ProblemDefinition.Numeric.ReverseMultiplication): Problem {
         val a = random.nextInt(definition.secondFactorMin, definition.secondFactorMax + 1)
         val b = definition.factor
         val equationSolution = a * b

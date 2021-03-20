@@ -8,7 +8,7 @@ class ReverseSubstractionGenerator(
     private val optionsGenerator: OptionsGenerator,
     private val random: Random
 ) {
-    fun create(definition: ProblemDefinition.ReverseSubtraction): Problem {
+    fun create(definition: ProblemDefinition.Numeric.ReverseSubtraction): Problem {
         val maximum = definition.maximumValue
         val equationSolution = random.nextInt(definition.minimumValue + 1, maximum)
         val a = if (equationSolution == maximum - 1) maximum else random.nextInt(equationSolution, maximum) + 1

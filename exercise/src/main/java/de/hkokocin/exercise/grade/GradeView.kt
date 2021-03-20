@@ -1,6 +1,5 @@
 package de.hkokocin.exercise.grade
 
-import android.graphics.drawable.Drawable
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent

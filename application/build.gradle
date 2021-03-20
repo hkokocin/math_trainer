@@ -38,7 +38,7 @@ dependencies {
 
     implementation project(":exercise_service")
     implementation project(":local_data")
-    implementation project(":redukt")
+    implementation project(':framework')
     implementation project(":toolkit")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
