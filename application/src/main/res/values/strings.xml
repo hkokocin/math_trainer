@@ -11,10 +11,10 @@
     <string name="highscore">Rekord: %1$d Punkte</string>
     <string name="new_highscore">Neuer Rekord</string>
 
-    <string name="lesson_item_progress">%1$d von %2$d Sternen</string>
+<!--    <string name="lesson_item_progress">%1$d von %2$d Sternen</string>-->
     <string name="grade">Level</string>
-    <string name="grade_stars_collected">%1$d Gesammelt</string>
-    <string name="grade_stars_remaining">%1$d Offen</string>
-    <string name="grade_stars_to_next_level">%1$d bis Level %2$d</string>
+    <string name="grade_stars_collected">%1$s Gesammelt</string>
+    <string name="grade_stars_remaining">%1$s Offen</string>
+    <string name="grade_stars_to_next_level">%1$s bis Level %2$s</string>
 
 </resources>

@@ -1,24 +1,21 @@
 package de.hkokocin.exercise.exercise
 
 import de.hkokocin.exercise.exercise.ExerciseViewState.*
-import de.hkokocin.exercise_service.ExercisesRepository
-import de.hkokocin.exercise_service.Problem
+import de.hkokocin.exercise_service.DefinitionsRepository
 import de.hkokocin.exercise_service.generators.Exercise
+import de.hkokocin.exercise_service.generators.Solution
 import de.hkokocin.local_data.LocalScoreRepository
 import de.hkokocin.redukt.Action
-import de.hkokocin.redukt.CompositeViewModel
-import de.hkokocin.redukt.ViewModelShard
+import de.hkokocin.redukt.LifecycleOnDestroy
+import de.hkokocin.redukt.LifecycleOnStart
+import de.hkokocin.redukt.ObservableViewModel
 import de.hkokocin.toolkit.coroutines.Jobs
 
 class ExerciseViewModel(
-    exerciseShard: ExerciseViewModelShard
-) : CompositeViewModel<ExerciseViewState>(exerciseShard)
-
-class ExerciseViewModelShard(
-    private val exercisesRepository: ExercisesRepository,
+    private val definitionsRepository: DefinitionsRepository,
     private val scoreRepository: LocalScoreRepository,
     private val jobs: Jobs
-) : ViewModelShard<ExerciseViewState>() {
+) : ObservableViewModel<ExerciseViewState>() {
 
     private lateinit var exerciseDefinitionId: String
     private lateinit var exercise: Exercise
@@ -28,15 +25,14 @@ class ExerciseViewModelShard(
             is InitializeExercise -> initializeExercise(action.exerciseDefinitionId)
             is StartExercise -> startExercise()
             is SelectOption -> optionSelected(action.solutionIndex)
+            is LifecycleOnDestroy -> jobs.clear()
         }
     }
 
-    override fun onCleared() = jobs.clear()
-
     private fun initializeExercise(definitionId: String) = jobs.launch {
         exerciseDefinitionId = definitionId
-        exercise = exercisesRepository.createExercise(definitionId)
-        val exerciseDefinition = exercisesRepository.getExercise(definitionId)
+        exercise = definitionsRepository.createExercise(definitionId)
+        val exerciseDefinition = definitionsRepository.getExercise(definitionId)
         val state = Initialization(
             exercise.title,
             exercise.description,
@@ -50,7 +46,7 @@ class ExerciseViewModelShard(
 
     private fun startExercise() {
         emit(Start(exercise.duration))
-        emitProblem(exercise.nextProblem())
+        emitNextProblem()
         runExercise()
     }
 
@@ -64,18 +60,26 @@ class ExerciseViewModelShard(
     }
 
     private fun optionSelected(solutionIndex: Int) {
-        val correct = exercise.solve(solutionIndex)
-        val animation = if (correct) NewProblem.Animate.SUCCESS else NewProblem.Animate.ERROR
-        emitProblem(exercise.nextProblem(), animation)
+        val solution = exercise.solveCurrentProblem(solutionIndex)
+        when(solution){
+            is Solution.Correct -> emitNextProblem(NewProblem.Animate.SUCCESS, null)
+            is Solution.Wrong -> emitNextProblem(NewProblem.Animate.ERROR, solution.correctSolution)
+        }
     }
 
-    private fun emitProblem(problem: Problem, animation: NewProblem.Animate = NewProblem.Animate.START) {
+    private fun emitNextProblem(
+        animation: NewProblem.Animate = NewProblem.Animate.START,
+        previousSolution: Int? = null
+    ) {
+        val problem = exercise.nextProblem()
+
         val newProblem = NewProblem(
             problem.problem,
             problem.options[0].toString(),
             problem.options[1].toString(),
             problem.options[2].toString(),
-            animation
+            animation,
+            previousSolution?.toString()
         )
 
         emit(newProblem)

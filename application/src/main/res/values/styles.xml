@@ -6,8 +6,9 @@
         <item name="colorPrimary">@color/teal</item>
         <item name="colorPrimaryDark">@color/teal_dark</item>
         <item name="colorAccent">@color/amber</item>
+        <item name="colorSurface">@color/amber_light</item>
 
-        <item name="android:windowBackground">@color/amber_light</item>
+        <item name="android:windowBackground">@android:color/background_light</item>
         <item name="drawerArrowStyle">@style/WhiteDrawerIconStyle</item>
     </style>
 
@@ -16,7 +17,7 @@
         <item name="colorPrimary">@color/green</item>
         <item name="colorPrimaryDark">@color/green_dark</item>
         <item name="colorAccent">@color/amber</item>
-        <item name="android:windowBackground">@color/green_light</item>
+        <item name="colorSurface">@color/green_light</item>
     </style>
 
     <style name="AppTheme.Cyan">
@@ -24,7 +25,7 @@
         <item name="colorPrimary">@color/cyan</item>
         <item name="colorPrimaryDark">@color/cyan_dark</item>
         <item name="colorAccent">@color/amber</item>
-        <item name="android:windowBackground">@color/cyan_light</item>
+        <item name="colorSurface">@color/cyan_light</item>
     </style>
 
     <style name="AppTheme.Orange">
@@ -32,7 +33,7 @@
         <item name="colorPrimary">@color/orange</item>
         <item name="colorPrimaryDark">@color/orange_dark</item>
         <item name="colorAccent">@color/amber</item>
-        <item name="android:windowBackground">@color/orange_light</item>
+        <item name="colorSurface">@color/orange_light</item>
     </style>
 
     <style name="AppTheme.Teal">
@@ -40,7 +41,7 @@
         <item name="colorPrimary">@color/teal</item>
         <item name="colorPrimaryDark">@color/teal_dark</item>
         <item name="colorAccent">@color/amber</item>
-        <item name="android:windowBackground">@color/teal_light</item>
+        <item name="colorSurface">@color/teal_light</item>
     </style>
 
     <style name="AppTheme.Purple">
@@ -48,7 +49,7 @@
         <item name="colorPrimary">@color/purple</item>
         <item name="colorPrimaryDark">@color/purple_dark</item>
         <item name="colorAccent">@color/amber</item>
-        <item name="android:windowBackground">@color/purple_light</item>
+        <item name="colorSurface">@color/purple_light</item>
     </style>
 
     <style name="WhiteDrawerIconStyle" parent="Widget.AppCompat.DrawerArrowToggle">

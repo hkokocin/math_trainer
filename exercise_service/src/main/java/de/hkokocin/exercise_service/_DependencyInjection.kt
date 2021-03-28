@@ -1,6 +1,7 @@
 package de.hkokocin.exercise_service
 
 import de.hkokocin.exercise_service.generators.*
+import de.hkokocin.exercise_service.grade.GradeStore
 import de.hkokocin.toolkit.i
 import de.hkokocin.toolkit.java.TimeProvider
 import org.kodein.di.Kodein
@@ -22,7 +23,8 @@ fun exerciseServiceModule() = Kodein.Module("ServiceModule") {
     bind<ProblemGenerator>() with provider { ProblemGenerator(i(), i(), i(), i(), i(), i(), i()) }
     bind<ExerciseGenerator>() with provider { ExerciseGenerator(i()) }
 
-    bind<ExercisesRepository>() with singleton { ExercisesRepository(i()) }
+    bind<DefinitionsRepository>() with singleton { DefinitionsRepository(i()) }
+    bind<GradeStore>() with provider { GradeStore() }
 
     bind<TimeProvider>() with provider { TimeProvider() }
 }

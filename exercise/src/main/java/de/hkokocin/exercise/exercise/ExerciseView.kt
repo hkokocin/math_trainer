@@ -41,7 +41,7 @@ object VibrationDuration {
 }
 
 class ExerciseView(
-    private val viewModel: ExerciseViewModel,
+    override val viewModel: ExerciseViewModel,
     private val activity: BaseActivity
 ) : BaseView() {
 
@@ -153,6 +153,9 @@ class ExerciseView(
             showProblemViewsAnimated()
         }
 
+        if (newProblem.previousSolution != null)
+            tvProblem.text = newProblem.previousSolution
+
         when (newProblem.animate) {
             NewProblem.Animate.ERROR -> hideProblemViewsOnErrorAnimated(onOptionViewsHidden)
             NewProblem.Animate.SUCCESS -> hideProblemViewsAnimated(onOptionViewsHidden)
@@ -219,7 +222,7 @@ class ExerciseView(
     @Suppress("DEPRECATION")
     private fun hideProblemViewsOnErrorAnimated(onEnd: () -> Unit = {}) {
         activity.vibrator.vibrate(VibrationDuration.LONG)
-        tvProblem.fadeOut().startDelay = AnimationDuration.ERROR - AnimationDuration.SHORT
+        tvProblem.fadeOut{ startDelay = AnimationDuration.ERROR - AnimationDuration.SHORT }
         bOption1.hideOptionOnErrorAnimated()
         bOption2.hideOptionOnErrorAnimated()
         bOption3.hideOptionOnErrorAnimated(onEnd)
@@ -251,10 +254,11 @@ class ExerciseView(
         start()
     }
 
-    private fun View.fadeOut() = ValueAnimator.ofFloat(1f, 0f).apply {
+    private fun View.fadeOut(configure: ValueAnimator.() -> Unit = {}) = ValueAnimator.ofFloat(1f, 0f).apply {
         duration = AnimationDuration.SHORT
         interpolator = AccelerateDecelerateInterpolator()
         addUpdateListener { alpha = it.animatedValue as Float }
+        configure()
         start()
     }
 

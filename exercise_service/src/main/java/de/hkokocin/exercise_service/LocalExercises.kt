@@ -1,9 +1,14 @@
 package de.hkokocin.exercise_service
 
-private val EASY_TIERS = listOf(8, 16, 22)
-private val MODERATE_TIERS = listOf(7, 14, 18)
-private val HARD_TIERS = listOf(6, 10, 14)
-private val X_HARD_TIERS = listOf(5, 9, 12)
+//private val EASY_TIERS = listOf(8, 16, 22)
+//private val MODERATE_TIERS = listOf(7, 14, 18)
+//private val HARD_TIERS = listOf(6, 10, 14)
+//private val X_HARD_TIERS = listOf(5, 9, 12)
+
+private val EASY_TIERS = listOf(5, 10, 15)
+private val MODERATE_TIERS = listOf(4, 8, 12)
+private val HARD_TIERS = listOf(3, 6, 10)
+private val X_HARD_TIERS = listOf(3, 5, 8)
 
 private const val DEFAULT_DURATION = 60
 
@@ -34,11 +39,11 @@ val REVERSE_ADD_5 = ExerciseDefinition(
 )
 
 val ADD_5_10 = ExerciseDefinition(
-    "ADD_10",
+    "ADD_5_10",
     DEFAULT_DURATION,
     listOf(ProblemDefinition.Numeric.Addition(1, 6, 10)),
     EASY_TIERS,
-    "Addition bis 10",
+    "Addition von 5 bis 10",
     ""
 )
 
@@ -75,7 +80,7 @@ val COMBINED_ADD_10 = ExerciseDefinition(
 val ADD_20 = ExerciseDefinition(
     "ADD_20",
     DEFAULT_DURATION,
-    listOf(ProblemDefinition.Numeric.Addition(1, 0, 20)),
+    listOf(ProblemDefinition.Numeric.Addition(1, 11, 20)),
     EASY_TIERS,
     "Addition bis 20",
     ""
@@ -84,7 +89,7 @@ val ADD_20 = ExerciseDefinition(
 val REVERSE_ADD_20 = ExerciseDefinition(
     "REVERSE_ADD_20",
     DEFAULT_DURATION,
-    listOf(ProblemDefinition.Numeric.ReverseAddition(1, 0, 20)),
+    listOf(ProblemDefinition.Numeric.ReverseAddition(1, 11, 20)),
     MODERATE_TIERS,
     "Addition bis 20 (Umkehraufgaben)",
     ""
@@ -94,8 +99,8 @@ val COMBINED_ADD_20 = ExerciseDefinition(
     "COMBINED_ADD_20",
     DEFAULT_DURATION,
     listOf(
-        ProblemDefinition.Numeric.Addition(1, 0, 20),
-        ProblemDefinition.Numeric.ReverseAddition(1, 0, 20)
+        ProblemDefinition.Numeric.Addition(1, 11, 20),
+        ProblemDefinition.Numeric.ReverseAddition(1, 11, 20)
     ),
     MODERATE_TIERS,
     "Addition bis 20 (gemischt)",
@@ -105,7 +110,7 @@ val COMBINED_ADD_20 = ExerciseDefinition(
 val ADD_100 = ExerciseDefinition(
     "ADD_100",
     DEFAULT_DURATION,
-    listOf(ProblemDefinition.Numeric.Addition(1, 0, 100)),
+    listOf(ProblemDefinition.Numeric.Addition(1, 21, 100)),
     HARD_TIERS,
     "Addition bis 100",
     ""
@@ -114,7 +119,7 @@ val ADD_100 = ExerciseDefinition(
 val REVERSE_ADD_100 = ExerciseDefinition(
     "REVERSE_ADD_100",
     DEFAULT_DURATION,
-    listOf(ProblemDefinition.Numeric.ReverseAddition(1, 0, 100)),
+    listOf(ProblemDefinition.Numeric.ReverseAddition(1, 21, 100)),
     X_HARD_TIERS,
     "Addition bis 100 (Umkehraufgaben)",
     ""
@@ -470,7 +475,7 @@ val DIVISIONS_HIGH = (1..10).map {
 // ==============================================================================
 
 
-val ALL_LOCAL_EXERCISES = listOf(
+val ALL_LOCAL_EXERCISES = listOf<ExerciseDefinition>(
     ADD_5,
     ADD_10,
     ADD_20,
@@ -509,203 +514,4 @@ val ALL_LOCAL_EXERCISES = listOf(
     COMBINED_MULTIPLICATIONS_3,
     COMBINED_MULTIPLICATIONS_4,
     COMBINED_MULTIPLICATIONS_5
-)
-
-// ==============================================================================
-// LESSONS
-// ==============================================================================
-
-// ------------------------------------------------------------------------------
-// Grade 1
-// ------------------------------------------------------------------------------
-
-val ADDITION_1 = LessonDefinition(
-    "ADDITION_1",
-    "Addition 1",
-    "",
-    listOf(ADD_5, ADD_5_10)
-)
-
-// ------------------------------------------------------------------------------
-// Grade 2
-// ------------------------------------------------------------------------------
-
-val ADDITION_2 = LessonDefinition(
-    "ADDITION_2",
-    "Addition 2",
-    "",
-    listOf(ADD_10, REVERSE_ADD_10, COMBINED_ADD_10)
-)
-
-val SUBTRACTION_1 = LessonDefinition(
-    "SUBTRACTION_1",
-    "Subtraktion 1",
-    "",
-    listOf(SUB_5, SUB_5_10)
-)
-
-// ------------------------------------------------------------------------------
-// Grade 3
-// ------------------------------------------------------------------------------
-
-val ADDITION_3 = LessonDefinition(
-    "ADDITION_3",
-    "Addition 3",
-    "",
-    listOf(ADD_20, REVERSE_ADD_20, COMBINED_ADD_20)
-)
-
-val SUBTRACTION_2 = LessonDefinition(
-    "SUBTRACTION_2",
-    "Subtraktion 2",
-    "",
-    listOf(SUB_10, REVERSE_SUB_10, COMBINED_SUB_10)
-)
-
-// ------------------------------------------------------------------------------
-// Grade 4
-// ------------------------------------------------------------------------------
-
-val ADDITION_4 = LessonDefinition(
-    "ADDITION_4",
-    "Addition 4",
-    "",
-    listOf(ADD_100, REVERSE_ADD_100)
-)
-
-val SUBTRACTION_3 = LessonDefinition(
-    "SUBTRACTION_3",
-    "Subtraktion 3",
-    "",
-    listOf(SUB_20, REVERSE_SUB_20, COMBINED_SUB_20)
-)
-
-val MULTIPLICATION_1 = LessonDefinition(
-    "MULTIPLICATION_1",
-    "Multiplikation 1",
-    "",
-    listOf(
-        MULTIPLICATIONS_LOW[0], MULTIPLICATIONS_HIGH[0], MULTIPLICATIONS[0],
-        MULTIPLICATIONS_LOW[9], MULTIPLICATIONS_HIGH[9], MULTIPLICATIONS[9]
-    )
-)
-
-// ------------------------------------------------------------------------------
-// Grade 5
-// ------------------------------------------------------------------------------
-
-val ADDITION_5 = LessonDefinition(
-    "ADDITION_5",
-    "Addition 5",
-    "",
-    listOf(COMBINED_ADD_100)
-)
-
-val SUBTRACTION_4 = LessonDefinition(
-    "SUBTRACTION_4",
-    "Subtraktion 4",
-    "",
-    listOf(SUB_100, REVERSE_SUB_100)
-)
-
-val MULTIPLICATION_2 = LessonDefinition(
-    "MULTIPLICATION_2",
-    "Multiplikation 2",
-    "",
-    listOf(
-        COMBINED_MULTIPLICATIONS_1,
-        MULTIPLICATIONS_LOW[4], MULTIPLICATIONS_HIGH[4], MULTIPLICATIONS[4],
-        MULTIPLICATIONS_LOW[1], MULTIPLICATIONS_HIGH[1], MULTIPLICATIONS[1],
-        MULTIPLICATIONS_LOW[8], MULTIPLICATIONS_HIGH[8], MULTIPLICATIONS[8],
-        REVERSE_MULTIPLICATIONS_LOW[0], REVERSE_MULTIPLICATIONS_HIGH[0], REVERSE_MULTIPLICATIONS[0],
-        REVERSE_MULTIPLICATIONS_LOW[9], REVERSE_MULTIPLICATIONS_HIGH[9], REVERSE_MULTIPLICATIONS[9]
-    )
-)
-
-// ------------------------------------------------------------------------------
-// Grade 6
-// ------------------------------------------------------------------------------
-
-val SUBTRACTION_5 = LessonDefinition(
-    "SUBTRACTION_5",
-    "Subtraktion 5",
-    "",
-    listOf(COMBINED_SUB_100)
-)
-
-val MULTIPLICATION_3 = LessonDefinition(
-    "MULTIPLICATION_3",
-    "Multiplikation 3",
-    "",
-    listOf(
-        COMBINED_MULTIPLICATIONS_2,
-        MULTIPLICATIONS_LOW[2], MULTIPLICATIONS_HIGH[2], MULTIPLICATIONS[2],
-        MULTIPLICATIONS_LOW[3], MULTIPLICATIONS_HIGH[3], MULTIPLICATIONS[3],
-        MULTIPLICATIONS_LOW[7], MULTIPLICATIONS_HIGH[7], MULTIPLICATIONS[7],
-        REVERSE_MULTIPLICATIONS_LOW[4], REVERSE_MULTIPLICATIONS_HIGH[4], REVERSE_MULTIPLICATIONS[4],
-        REVERSE_MULTIPLICATIONS_LOW[1], REVERSE_MULTIPLICATIONS_HIGH[1], REVERSE_MULTIPLICATIONS[1],
-        REVERSE_MULTIPLICATIONS_LOW[8], REVERSE_MULTIPLICATIONS_HIGH[8], REVERSE_MULTIPLICATIONS[8]
-    )
-)
-
-// ------------------------------------------------------------------------------
-// Grade 7
-// ------------------------------------------------------------------------------
-
-val MULTIPLICATION_4 = LessonDefinition(
-    "MULTIPLICATION_4",
-    "Multiplikation 4",
-    "",
-    listOf(
-        COMBINED_MULTIPLICATIONS_3,
-        MULTIPLICATIONS_LOW[5], MULTIPLICATIONS_HIGH[5], MULTIPLICATIONS[5],
-        MULTIPLICATIONS_LOW[6], MULTIPLICATIONS_HIGH[6], MULTIPLICATIONS[6],
-        REVERSE_MULTIPLICATIONS_LOW[2], REVERSE_MULTIPLICATIONS_HIGH[2], REVERSE_MULTIPLICATIONS[2],
-        REVERSE_MULTIPLICATIONS_LOW[3], REVERSE_MULTIPLICATIONS_HIGH[3], REVERSE_MULTIPLICATIONS[3],
-        REVERSE_MULTIPLICATIONS_LOW[7], REVERSE_MULTIPLICATIONS_HIGH[7], REVERSE_MULTIPLICATIONS[7]
-    )
-)
-
-// ------------------------------------------------------------------------------
-// Grade 8
-// ------------------------------------------------------------------------------
-
-val MULTIPLICATION_5 = LessonDefinition(
-    "MULTIPLICATION_5",
-    "Multiplikation 5",
-    "",
-    listOf(
-        COMBINED_MULTIPLICATIONS_4,
-        REVERSE_MULTIPLICATIONS_LOW[5], REVERSE_MULTIPLICATIONS_HIGH[5], REVERSE_MULTIPLICATIONS[5],
-        REVERSE_MULTIPLICATIONS_LOW[6], REVERSE_MULTIPLICATIONS_HIGH[6], REVERSE_MULTIPLICATIONS[6]
-    )
-)
-
-// ------------------------------------------------------------------------------
-// Grade 9
-// ------------------------------------------------------------------------------
-
-val MULTIPLICATION_6 = LessonDefinition(
-    "MULTIPLICATION_6",
-    "Multiplikation 6",
-    "",
-    listOf(COMBINED_MULTIPLICATIONS_5)
-)
-
-val ALL_LOCAL_LESSONS = listOf(
-    ADDITION_1, ADDITION_2, ADDITION_3, ADDITION_4, ADDITION_5,
-    SUBTRACTION_1, SUBTRACTION_2, SUBTRACTION_3, SUBTRACTION_4, SUBTRACTION_5,
-    MULTIPLICATION_1, MULTIPLICATION_2, MULTIPLICATION_3, MULTIPLICATION_4, MULTIPLICATION_5, MULTIPLICATION_6
-)
-
-val ALL_LOCAL_GRADES = listOf(
-    GradeDefinition(0, "ADDITION_1"),
-    GradeDefinition(1, "ADDITION_2", "SUBTRACTION_1"),
-    GradeDefinition(2, "ADDITION_3", "SUBTRACTION_2"),
-    GradeDefinition(3, "ADDITION_4", "SUBTRACTION_3", "MULTIPLICATION_1"),
-    GradeDefinition(4, "ADDITION_5", "SUBTRACTION_4", "MULTIPLICATION_2"),
-    GradeDefinition(5, null, "SUBTRACTION_5", "MULTIPLICATION_3"),
-    GradeDefinition(6, multiplyLessonId = "MULTIPLICATION_4"),
-    GradeDefinition(7, multiplyLessonId = "MULTIPLICATION_5"),
-    GradeDefinition(8, multiplyLessonId = "MULTIPLICATION_6")
 )

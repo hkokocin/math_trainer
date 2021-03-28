@@ -6,7 +6,7 @@ import androidx.lifecycle.OnLifecycleEvent
 
 interface Action
 
-interface Store<T> {
+interface LifecycleAwareObservable<T> {
 
     val subscriptions: MutableList<(T) -> Unit>
 

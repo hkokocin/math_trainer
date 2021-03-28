@@ -10,7 +10,8 @@ sealed class ExerciseViewState : ViewState {
         val option1: String,
         val option2: String,
         val option3: String,
-        val animate: Animate
+        val animate: Animate,
+        val previousSolution: String? = null
     ) : ExerciseViewState() {
         enum class Animate { START, ERROR, SUCCESS }
     }

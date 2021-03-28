@@ -5,30 +5,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_light"
-    tools:theme="@style/AppTheme.Teal">
+    android:clipToPadding="true">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         style="@style/Widget.MaterialComponents.Light.ActionBar.Solid"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@color/teal"
+        android:background="?colorPrimary"
         app:layout_constraintTop_toTopOf="parent"
         app:titleTextColor="@color/design_default_color_on_primary" />
 
-<!--    <include-->
-<!--        layout="@layout/grade_view_page"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/toolbar"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+    <!-- ================================== -->
+    <!-- HEADER -->
+    <!-- ================================== -->
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/vp_grades"
+    <View
+        android:id="@+id/v_header_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/ll_level"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <LinearLayout
+        android:id="@+id/ll_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_normal"
+        android:layout_marginBottom="@dimen/space_normal"
+        android:layout_weight="0.5"
+        android:background="@drawable/level_background"
+        android:backgroundTint="@color/teal_dark"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/space_large"
+        android:paddingTop="@dimen/space_normal"
+        app:layout_constraintBottom_toBottomOf="@id/v_header_bg"
+        app:layout_constraintRight_toLeftOf="@id/gl_header"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/grade"
+            android:textSize="24sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="72sp"
+            tools:text="2" />
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_stars_collected"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/space_normal"
+        android:drawableStart="@drawable/ic_star_amber_24dp"
+        android:drawablePadding="@dimen/space_small"
+        android:padding="@dimen/space_small"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/gl_header"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ll_level"
+        tools:text="12 Gesammelt" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_stars_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/space_normal"
+        android:drawableStart="@drawable/ic_star_border_amber_24dp"
+        android:drawablePadding="@dimen/space_small"
+        android:padding="@dimen/space_small"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/gl_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_stars_collected"
+        tools:text="12 Offen" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_stars_to_next_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="@dimen/space_normal"
+        android:drawableStart="@drawable/ic_locked_24dp"
+        android:drawablePadding="@dimen/space_small"
+        android:padding="@dimen/space_small"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@id/gl_header"
+        app:layout_constraintTop_toBottomOf="@id/tv_stars_left"
+        tools:text="4 Bis Level 3" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_exercises"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/v_header_bg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

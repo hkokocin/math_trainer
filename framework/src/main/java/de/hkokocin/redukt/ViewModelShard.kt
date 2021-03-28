@@ -5,7 +5,13 @@ import androidx.lifecycle.ViewModel
 
 interface ViewState
 
-abstract class CompositeViewModel<T : ViewState>(private vararg val shards: ViewModelShard<T>) : ViewModel(), Store<T> {
+abstract class ObservableViewModel<T : ViewState>() : LifecycleAwareObservable<T> {
+    override val subscriptions = mutableListOf<(T) -> Unit>()
+}
+
+@Deprecated("If classes are so tightly coupled that they do not work alone they meight as well be one class. We need to separate on another level")
+abstract class CompositeViewModel<T : ViewState>(private vararg val shards: ViewModelShard<T>) : ViewModel(),
+    LifecycleAwareObservable<T> {
 
     override val subscriptions = mutableListOf<(T) -> Unit>()
 
@@ -23,7 +29,7 @@ abstract class CompositeViewModel<T : ViewState>(private vararg val shards: View
     }
 }
 
-abstract class ViewModelShard<T : Any>() : Store<T> {
+abstract class ViewModelShard<T : Any>() : LifecycleAwareObservable<T> {
     override val subscriptions = mutableListOf<(T) -> Unit>()
 
     open fun onCleared() {}

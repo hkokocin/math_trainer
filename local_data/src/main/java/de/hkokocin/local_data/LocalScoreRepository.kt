@@ -8,6 +8,9 @@ private const val SCORE_PREFIX = "SCORE_"
 class LocalScoreRepository(
     private val sharedPreferences: SharedPreferences
 ) {
+    fun eraseResults(exerciseDefinitionIds: List<String>) =
+        exerciseDefinitionIds.forEach { sharedPreferences.edit { remove(SCORE_PREFIX + it) } }
+
     fun getHighscore(exerciseDefinitionId: String) = sharedPreferences.getInt(SCORE_PREFIX + exerciseDefinitionId, 0)
 
     fun updateHighscore(exerciseDefinitionId: String, score: Int) = sharedPreferences.edit {

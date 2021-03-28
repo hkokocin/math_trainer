@@ -1,8 +1,9 @@
-package de.hkokocin.exercise.grade
+package de.hkokocin.exercise.grade.ui
 
 import android.os.Bundle
 import de.hkokocin.android.BaseActivity
 import de.hkokocin.exercise.R
+import de.hkokocin.exercise.grade.gradeScope
 import org.kodein.di.KodeinAware
 import org.kodein.di.erased.instance
 

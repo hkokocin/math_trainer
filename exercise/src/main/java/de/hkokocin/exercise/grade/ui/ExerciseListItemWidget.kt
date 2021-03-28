@@ -1,4 +1,4 @@
-package de.hkokocin.exercise.lesson
+package de.hkokocin.exercise.grade.ui
 
 import android.content.res.ColorStateList
 import android.widget.ImageView
@@ -9,7 +9,7 @@ import de.hkokocin.exercise.R
 import de.hkokocin.toolkit.android_extensions.attributeColor
 import de.hkokocin.widgetadapter.Widget
 
-class ExerciseListItemWidget : Widget<ExerciseListItem>(R.layout.lesson_exercise_item) {
+class ExerciseListItemWidget : Widget<ExerciseListItem>(R.layout.exercise_item) {
 
     private val clContainer: ConstraintLayout by viewId(R.id.cl_container)
     private val tvTitle: TextView by viewId(R.id.tv_title)
@@ -27,9 +27,12 @@ class ExerciseListItemWidget : Widget<ExerciseListItem>(R.layout.lesson_exercise
         ivStar2.setStarColor(data.stars >= 2)
         ivStar3.setStarColor(data.stars >= 3)
 
-        clContainer.isEnabled =  data.unlocked
-        clContainer.alpha = if(data.unlocked) 1f else 0.3f
+        clContainer.isEnabled = data.unlocked
         clContainer.setOnClickListener { data.onClick() }
+
+//        clContainer.postDelayed({
+        clContainer.alpha = if (data.unlocked) 1f else 0.3f
+//        }, 480)
     }
 
     private fun ImageView.setStarColor(active: Boolean) {

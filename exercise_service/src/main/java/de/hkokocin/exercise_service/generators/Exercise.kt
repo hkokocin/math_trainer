@@ -17,6 +17,11 @@ data class ProblemResult(
     val solutionIndex: Int
 )
 
+sealed class Solution{
+    class Correct: Solution()
+    data class Wrong(val correctSolution: Int): Solution()
+}
+
 class Exercise(
     private val definition: ExerciseDefinition,
     private val problemGenerator: ProblemGenerator
@@ -49,13 +54,15 @@ class Exercise(
         ExerciseResult(score, stars).also { result = it }
     }
 
-    fun solve(solutionIndex: Int): Boolean {
+    fun solveCurrentProblem(solutionIndex: Int): Solution {
         check(!finished) { "Exercise has already been finished" }
         val problem = checkNotNull(currentProblem) { "Exercise has not been started" }
 
         solutions.add(ProblemResult(problem, problem.options[solutionIndex]))
 
-        return problem.solution == problem.options[solutionIndex]
+        val correct = problem.solution == problem.options[solutionIndex]
+
+        return if(correct) Solution.Correct() else Solution.Wrong(problem.solution)
     }
 
     fun nextProblem() = problemGenerator
